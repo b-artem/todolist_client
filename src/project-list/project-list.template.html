@@ -1,0 +1,7 @@
+<h1>TEMPLATE COOL</h1>
+
+<ul>
+  <li ng-repeat="project in $ctrl.projects | orderBy:$ctrl.orderProp">
+    <p>{{ project.name }}</p>
+  </li>
+</ul>

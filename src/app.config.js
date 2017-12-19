@@ -1,19 +1,22 @@
 'use strict';
 
 import angular from 'angular';
-// import ngTokenAuth from 'ng-token-auth';
+import ngTokenAuth from 'ng-token-auth';
 import ngRoute from 'angular-route';
-// import ngCookie from 'angular-cookie';
+import ngCookie from 'angular-cookie';
+
+import { apiUrl } from 'app.module';
 
 
-configs.$inject = ['$locationProvider', '$routeProvider'];
+configs.$inject = ['$authProvider', '$locationProvider', '$routeProvider'];
 
 
-export default function configs( $locationProvider, $routeProvider) {
+export default function configs($authProvider, $locationProvider, $routeProvider) {
 
-  // $authProvider.configure({
-  //   apiUrl: 'http://api.example.com'
-  // });
+  $authProvider.configure({
+    apiUrl: apiUrl
+    // validateOnPageLoad: false
+  });
 
   $locationProvider.hashPrefix('!');
 

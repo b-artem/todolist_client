@@ -1,8 +1,9 @@
 'use strict';
 
 import angular from 'angular';
-import { apiUrl } from 'app.module';
+import ngTokenAuth from 'ng-token-auth';
 
+import { apiUrl } from 'app.module';
 import template from './login.template.html';
 
 export default function() {
@@ -13,15 +14,23 @@ export default function() {
 }
 
 class loginCtrl {
-  constructor() {
-    // var projects = this;
-    // $http.get(apiUrl + 'projects',
-    //     { headers: { 'Accept': 'application/json' }})
-    //   .then(function(success) {
-    //     projects.projects = success.data
-    //   }, function(error) {
-    //     console.log('Error receiving data from API!' + error.status)
-    //   });
-    // this.orderProp = 'name';
+  constructor($auth) {
+    this.loginForm = {};
+    this.$auth = $auth;
+  }
+
+  submitLogin(loginForm) {
+    self = this;
+    self.$auth.submitLogin(loginForm)
+      .then(function(success) {
+        // handle success response
+        console.log('Success login!');
+      })
+      .catch(function(error) {
+        // handle error response
+        console.log('Login failed!');
+      });
   }
 }
+
+loginCtrl.$inject = ['$auth'];

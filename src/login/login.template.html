@@ -5,19 +5,19 @@
       <p class="mb-5">Incorrect login or(and) password.</p>
     </div>
 
-    <form ng-submit="$ctrl.submitLogin(loginForm)" role="form" novalidate ng-init="loginForm = {}">
+    <form ng-submit="$ctrl.submitLogin($ctrl.loginForm)" novalidate>
 
       <div class="form-group mb-20">
         <label>Email</label>
-        <input type="email" name="email" ng-model="$ctrl.loginForm.email" required class="form-control"/>
+        <input type="email" ng-model="$ctrl.loginForm.email" class="form-control" required />
       </div>
 
       <div class="form-group mb-20">
         <label>Password</label>
-        <input type="password" name="password" ng-model="$ctrl.loginForm.password" class="form-control" required />
+        <input type="password" ng-model="$ctrl.loginForm.password" class="form-control" required />
       </div>
 
-      <button type="submit" class="mb-15 mr-15 btn btn-primary">Sign In</button>
+      <button type="submit" class="btn btn-primary mb-15 mr-15 ">Sign In</button>
       <!-- <input type="submit" placeholder="Sign In" class="primary mb-15 mr-15" /> -->
 
       <p>Do not have an account? <a href="/sign_up">Sign Up</a></p>

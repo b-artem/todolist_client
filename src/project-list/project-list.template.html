@@ -4,4 +4,8 @@
   <li ng-repeat="project in $ctrl.projects | orderBy:$ctrl.orderProp">
     <p>{{ project.name }}</p>
   </li>
+
+  <br><br><br>
+  <h4>Data:</h4>
+  {{ $ctrl.projects }}
 </ul>

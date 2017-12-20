@@ -22,8 +22,8 @@ export default function configs($authProvider, $locationProvider, $routeProvider
 
   $routeProvider.
     when('/', {
-      template: '<login></login>'
-      // template: '<project-list></project-list>'
+      // template: '<login></login>'
+      template: '<project-list></project-list>'
     }).
     when('/sign_in', {
       template: '<login></login>'

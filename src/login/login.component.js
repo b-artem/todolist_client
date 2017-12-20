@@ -20,8 +20,7 @@ class loginCtrl {
   }
 
   submitLogin(loginForm) {
-    self = this;
-    self.$auth.submitLogin(loginForm)
+    this.$auth.submitLogin(loginForm)
       .then(function(success) {
         // handle success response
         console.log('Success login!');

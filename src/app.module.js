@@ -11,15 +11,17 @@ import 'scss/application.scss';
 import config from 'app.config'
 import projectList from 'project-list/project-list.module';
 import login from 'login/login.module'
+import logout from 'logout/logout.module'
 
-export const apiUrl = 'http://localhost:3000/api/v1/';
+export const apiUrl = 'http://localhost:3000/api/v1';
 
 export default angular.module('todolistApp', [
   ngRoute,
   ngTokenAuth,
   ngCookie,
   projectList,
-  login
+  login,
+  logout
   // 'ngAnimate',
   // 'core',
   // 'phoneDetail',

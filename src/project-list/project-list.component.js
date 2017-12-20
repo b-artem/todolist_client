@@ -16,7 +16,7 @@ export default function() {
 class projectListCtrl {
   constructor($http) {
     var projects = this;
-    $http.get(apiUrl + 'projects',
+    $http.get(apiUrl + '/projects',
         { headers: { 'Accept': 'application/json' }})
       .then(function(success) {
         projects.projects = success.data

@@ -17,19 +17,21 @@ class loginCtrl {
   constructor($auth) {
     this.loginForm = {};
     this.$auth = $auth;
+    this.errors = [];
   }
 
   submitLogin(loginForm) {
+    var self = this;
     this.$auth.submitLogin(loginForm)
-      .then(function(success) {
-        // handle success response
+      .then(function(response) {
         console.log('Success login!');
       })
-      .catch(function(error) {
-        // handle error response
-        console.log('Login failed!');
+      .catch(function(response) {
+        self.errors = response.errors;
+        console.log('Login failed!!! ' + response.errors);
       });
   }
+
 }
 
 loginCtrl.$inject = ['$auth'];

@@ -3,6 +3,7 @@
     <h2>Sign In</h2>
     <div class="alert-danger">
       <p class="mb-5">Incorrect login or(and) password.</p>
+      <div ng-repeat="error in $ctrl.errors">{{ error }}</div>
     </div>
 
     <form name="loginForm" novalidate

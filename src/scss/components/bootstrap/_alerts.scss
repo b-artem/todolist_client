@@ -5,3 +5,8 @@
   padding: 0;
   @include alert-variant(transparent, transparent, $form-control-error-color);
 }
+
+.alert-success {
+  padding: 0;
+  @include alert-variant(transparent, transparent, $form-control-success-color);
+}

@@ -19,11 +19,15 @@ export default function configs($authProvider, $locationProvider, $routeProvider
   });
 
   $locationProvider.hashPrefix('!');
+  // $locationProvider.html5Mode(true);
 
   $routeProvider.
     when('/', {
       // template: '<login></login>'
       template: '<project-list></project-list>'
+    }).
+    when('/sign_up', {
+      template: '<signup></signup>'
     }).
     when('/sign_in', {
       template: '<login></login>'

@@ -3,6 +3,12 @@
 <ul>
   <li ng-repeat="project in $ctrl.projects | orderBy:$ctrl.orderProp">
     <p>{{ project.name }}</p>
+    <ul>
+      <li ng-repeat="task in project.tasks">
+        {{ task.name }}
+      </li>
+    </ul>
+    <br>
   </li>
 
   <br><br><br>

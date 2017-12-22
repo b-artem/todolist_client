@@ -2,35 +2,62 @@
 
 import angular from 'angular';
 import ngTokenAuth from 'ng-token-auth';
-import ngRoute from 'angular-route';
 import ngCookie from 'angular-cookie';
+import uiRouter from 'angular-ui-router';
 
-import { apiUrl } from 'app.module';
+import { apiUrl } from 'app';
+
+configs.$inject = ['$authProvider', '$stateProvider'];
 
 
-configs.$inject = ['$authProvider', '$locationProvider', '$routeProvider'];
+export default function configs($authProvider, $stateProvider) {
 
+  var mainState = {
+    name: 'main',
+    url: '/',
+    component: 'projectList'
+    // resolve: {
+    //   projects: function(ProjectsService) {
+    //     ProjectsService.getAll();
+    //   }
+    // }
+  }
 
-export default function configs($authProvider, $locationProvider, $routeProvider) {
+  var loginState = {
+    name: 'login',
+    url: '/sign_in',
+    component: 'login'
+  }
+
+  var signupState = {
+    name: 'signup',
+    url: '/sign_up',
+    component: 'signup'
+  }
+
 
   $authProvider.configure({
     apiUrl: apiUrl
     // validateOnPageLoad: false
   });
 
-  $locationProvider.hashPrefix('!');
+  // $locationProvider.hashPrefix('!');
   // $locationProvider.html5Mode(true);
 
-  $routeProvider.
-    when('/', {
-      // template: '<login></login>'
-      template: '<project-list></project-list>'
-    }).
-    when('/sign_up', {
-      template: '<signup></signup>'
-    }).
-    when('/sign_in', {
-      template: '<login></login>'
-    }).
-    otherwise('/');
+  $stateProvider.state(mainState);
+  $stateProvider.state(loginState);
+  $stateProvider.state(signupState);
+
+  // $routeProvider.
+  //   when('/', {
+  //     // template: '<login></login>'
+  //     template: '<project-list></project-list>'
+  //   }).
+  //   when('/sign_up', {
+  //     template: '<signup></signup>'
+  //   }).
+  //   when('/sign_in', {
+  //     template: '<login></login>'
+  //   }).
+  //   otherwise('/');
 }

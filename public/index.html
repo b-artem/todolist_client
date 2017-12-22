@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= htmlWebpackPlugin.options.title %></title>
+
   </head>
 
   <body>
@@ -15,7 +16,6 @@
           <div class="row d-flex align-center">
             <div class="col-xs-3">
               <a class="mb-5" href="/">
-                <h1>{{ logo }}</h1>
                 <img src="logo.svg" alt="logo" />
               </a>
             </div>
@@ -23,6 +23,9 @@
               <h1 class="mt-0 mb-5">Simple ToDo List</h1>
             </div>
             <div class="col-xs-3 text-right">
+              <a ui-sref="main">Main page</a>
+              <a ui-sref="login">Log in</a>
+              <a ui-sref="signup">Sign up</a>
               <logout></logout>
               <!-- <button class="mb-5">Exit</button> -->
             </div>
@@ -32,7 +35,7 @@
 
       <h1>{{ 'Really working? ' + 'Yes!!!' }}</h1>
 
-      <div ng-view class="page-container"></div>
+      <ui-view></ui-view>
 
     </div>
   </body>

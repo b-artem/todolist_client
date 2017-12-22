@@ -15,9 +15,7 @@ import login from 'login/login.module';
 import logout from 'logout/logout.module';
 
 
-export const apiUrl = 'http://localhost:3000/api/v1';
-
-const app = angular.module('todolistApp', [
+const app = angular.module('todoList', [
   uiRouter,
   ngTokenAuth,
   ngCookie,

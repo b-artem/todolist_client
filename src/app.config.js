@@ -1,11 +1,11 @@
 'use strict';
 
+export const apiUrl = 'http://localhost:3000/api/v1';
+
 import angular from 'angular';
 import ngTokenAuth from 'ng-token-auth';
 import ngCookie from 'angular-cookie';
 import uiRouter from 'angular-ui-router';
-
-import { apiUrl } from 'app';
 
 configs.$inject = ['$authProvider', '$stateProvider'];
 

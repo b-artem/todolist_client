@@ -4,7 +4,7 @@
 import angular from 'angular';
 import projectListComponent from 'project-list/project-list.component';
 
-export default angular.module('projectList.module', []).
+export default angular.module('todoList.projectList', []).
   component('projectList', projectListComponent()).
   name;
 

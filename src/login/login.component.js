@@ -3,7 +3,7 @@
 import angular from 'angular';
 import ngTokenAuth from 'ng-token-auth';
 
-import { apiUrl } from 'app';
+import { apiUrl } from 'app.config';
 import template from './login.template.html';
 
 export default function() {

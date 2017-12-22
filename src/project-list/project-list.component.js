@@ -1,7 +1,7 @@
 'use strict';
 
 import angular from 'angular';
-import { apiUrl } from 'app';
+import { apiUrl } from 'app.config';
 
 // import template from '!ngtemplate-loader?requireAngular!html-loader!project-list/project-list.template.html';
 import template from './project-list.template.html';

@@ -2,7 +2,8 @@
 
 // var templateUrl = require('!ngtemplate-loader?requireAngular!html-loader!project-list/project-list.template.html');
 import angular from 'angular';
-import projectListComponent from 'project-list/project-list.component';
+
+import projectListComponent from './project-list.component';
 
 export default angular.module('todoList.projectList', []).
   component('projectList', projectListComponent()).

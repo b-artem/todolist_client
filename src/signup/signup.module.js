@@ -2,7 +2,7 @@
 
 import angular from 'angular';
 
-import signupComponent from 'signup/signup.component';
+import signupComponent from './signup.component';
 
 export default angular.module('todoList.signup', []).
   component('signup', signupComponent()).

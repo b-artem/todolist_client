@@ -9,11 +9,11 @@ import template from './signup.template.html';
 export default function() {
   return {
     templateUrl: template,
-    controller: signupCtrl
+    controller: SignupCtrl
   }
 }
 
-class signupCtrl {
+class SignupCtrl {
   constructor($auth) {
     this.signupForm = {};
     this.$auth = $auth;
@@ -30,4 +30,4 @@ class signupCtrl {
   }
 }
 
-signupCtrl.$inject = ['$auth'];
+SignupCtrl.$inject = ['$auth'];

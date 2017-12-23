@@ -5,17 +5,18 @@ export const apiUrl = 'http://localhost:3000/api/v1';
 import angular from 'angular';
 import ngTokenAuth from 'ng-token-auth';
 import ngCookie from 'angular-cookie';
-import uiRouter from 'angular-ui-router';
+import uiRouter from '@uirouter/angularjs/release/angular-ui-router';
 
-configs.$inject = ['$authProvider', '$stateProvider'];
+config.$inject = ['$authProvider', '$stateProvider'];
 
 
-export default function configs($authProvider, $stateProvider) {
+export default function config($authProvider, $stateProvider) {
 
   var mainState = {
     name: 'main',
     url: '/',
     component: 'projectList'
+    // component: 'project'
     // resolve: {
     //   projects: function(ProjectsService) {
     //     ProjectsService.getAll();

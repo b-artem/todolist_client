@@ -9,19 +9,5 @@ projectService.$inject = ['$resource'];
 
 // $resource(url, [paramDefaults], [actions], options);
 export default function projectService($resource) {
-  return $resource(apiUrl + '/projects', {}, {});
+  return $resource(apiUrl + '/projects/:id', { id: '@id' })
 }
-
-
-
-// export default class ProjectService {
-//   constructor($resource) {
-//     this.$resource = $resource;
-//   }
-//
-//   loadData() {
-//     this.data = this.$resource(apiUrl + '/projects/:id.json', {}, { id: '@id' } );
-//   }
-// }
-
-// ProjectService.$inject = [ngResource];

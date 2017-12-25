@@ -7,21 +7,38 @@ import ngTokenAuth from 'ng-token-auth';
 import ngCookie from 'angular-cookie';
 import uiRouter from '@uirouter/angularjs/release/angular-ui-router';
 
-config.$inject = ['$authProvider', '$stateProvider'];
+import projectCore from 'core/project/project.module';
 
+config.$inject = ['$authProvider', '$stateProvider'];
 
 export default function config($authProvider, $stateProvider) {
 
   var mainState = {
     name: 'main',
-    url: '/',
-    component: 'projectList'
-    // component: 'project'
-    // resolve: {
-    //   projects: function(ProjectsService) {
-    //     ProjectsService.getAll();
-    //   }
-    // }
+    url: '/projects',
+    component: 'projectList',
+    resolve: {
+      projects: ['Project', function(Project) {
+        return Project.query();
+      }]
+    }
+  }
+
+  var projectState = {
+    name: 'main.project',
+    url: '/{projectId}',
+    component: 'project',
+    resolve: {
+      projects: ['Project', '$stateParams', function(Project, $stateParams) {
+        return Project.get({ id: $stateParams.projectId });
+      }]
+
+      // project: function(projects, $stateParams) {
+      //   return projects.find(function(project) {
+      //     return project.id == $stateParams.projectId;
+      //   });
+      // }
+    }
   }
 
   var loginState = {
@@ -48,6 +65,7 @@ export default function config($authProvider, $stateProvider) {
   $stateProvider.state(mainState);
   $stateProvider.state(loginState);
   $stateProvider.state(signupState);
+  $stateProvider.state(projectState)
 
   // $routeProvider.
   //   when('/', {

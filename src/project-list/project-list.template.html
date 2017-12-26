@@ -1,32 +1,30 @@
-<h1>project-list template</h1>
+<!-- <h1>project-list template</h1> -->
 
 <div id="projects">
   <ul>
     <li ng-repeat="project in $ctrl.projects | orderBy:$ctrl.orderProp">
       <!-- <a ui-sref="main.project({ projectId: project.id })">{{ project.name }}</a> -->
-      <a ui-sref-active="active"
+      <a ui-sref-active="active" ng-click="$ctrl.setActiveProject(project.id)"
         ui-sref="main.project({ projectId: project.id })">{{ project.name }}
       </a>
-      <div>
-        <ul>
+      <div ng-show="project.id === $ctrl.activeProjectId">
+        <ui-view ></ui-view>
+        <!-- <ul>
           <li ng-repeat="task in project.tasks">
             {{ task.name }}
           </li>
-        </ul>
+        </ul> -->
       </div>
-
-
-
       <br>
     </li>
   </ul>
 
   <!-- <div ng-show="project.id === {{$ctrl.activeProjectId}}"> -->
-  <ui-view ></ui-view>
+  <!-- <ui-view ></ui-view> -->
   <!-- </div> -->
 </div>
 
 
 <br><br><br>
-<h4>Data:</h4>
+<h5>Data:</h5>
 {{ $ctrl.projects }}

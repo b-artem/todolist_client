@@ -20,6 +20,9 @@ export default function config($authProvider, $stateProvider) {
     resolve: {
       projects: ['Project', function(Project) {
         return Project.query();
+      }],
+      activeProjectId: ['$stateParams', function($stateParams) {
+        return parseInt($stateParams.projectId);
       }]
     }
   }
@@ -29,8 +32,23 @@ export default function config($authProvider, $stateProvider) {
     url: '/{projectId}',
     component: 'project',
     resolve: {
-      projects: ['Project', '$stateParams', function(Project, $stateParams) {
-        return Project.get({ id: $stateParams.projectId });
+      // project: ['Project', '$stateParams', function(Project, $stateParams) {
+      //   return Project.get({ id: $stateParams.projectId });
+      // }]
+
+      // projectId: ['$stateParams', function($stateParams) {
+      //   return parseInt($stateParams.projectId);
+      // }],
+
+      project: ['projects', '$stateParams', function(projects, $stateParams) {
+        return projects.find(function(project) {
+          return project.id === parseInt($stateParams.projectId);
+        })
+      }],
+
+      activeProjectId: ['$stateParams', function($stateParams) {
+        console.log(parseInt($stateParams.projectId));
+        return parseInt($stateParams.projectId);
       }]
 
       // project: function(projects, $stateParams) {

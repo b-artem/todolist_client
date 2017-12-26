@@ -9,7 +9,7 @@ import template from './project-list.template.html';
 
 export default function() {
   return {
-    bindings: { projects: '<' },
+    bindings: { projects: '<', activeProjectId: '<' },
     // , activeProjectId: '<' },
     templateUrl: template,
     controller: ProjectListCtrl
@@ -18,8 +18,7 @@ export default function() {
 
 class ProjectListCtrl {
   constructor(/*Project*/) {
-
-
+    // this.activeProjectId = 0;
     // this.projects = Project.query(
     //   function(success) {
     //     console.log('All cool!');
@@ -28,6 +27,10 @@ class ProjectListCtrl {
     //     console.log('Error receiving data from API!' + error.status);
     //   });
     // this.orderProp = 'name';
+  }
+
+  setActiveProject(projectId) {
+    this.activeProjectId = projectId;
   }
 }
 

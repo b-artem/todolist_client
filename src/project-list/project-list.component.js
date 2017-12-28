@@ -10,7 +10,6 @@ import template from './project-list.template.html';
 export default function() {
   return {
     bindings: { projects: '<', activeProjectId: '<' },
-    // , activeProjectId: '<' },
     templateUrl: template,
     controller: ProjectListCtrl
   }
@@ -18,7 +17,8 @@ export default function() {
 
 class ProjectListCtrl {
   constructor(/*Project*/) {
-    // this.activeProjectId = 0;
+    console.log(this.activeProjectId);
+    this.activeProjectId = -1;
     // this.projects = Project.query(
     //   function(success) {
     //     console.log('All cool!');
@@ -32,6 +32,11 @@ class ProjectListCtrl {
   setActiveProject(projectId) {
     this.activeProjectId = projectId;
   }
+
+  // $onInit() {
+  //   // this.activeProjectId = this.activeProjectId || 'default value';
+  //   console.log(this.activeProjectId);
+  // }
 }
 
 // ProjectListCtrl.$inject = ['Project'];

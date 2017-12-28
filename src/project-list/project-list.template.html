@@ -1,8 +1,13 @@
 <!-- <h1>project-list template</h1> -->
 
-<div id="projects">
-  <ul>
-    <li ng-repeat="project in $ctrl.projects | orderBy:$ctrl.orderProp">
+<div id="projects" class="row project-info__title">
+  <div class="col-sm-8 sm-offset-2">
+    <h2>Projects</h2>
+    <div class="alert-success mb-10">
+      <p class="mb-5"><b>Well done!</b> You have successfully done all tasks.</p>
+    </div>
+
+    <div class="project" ng-repeat="project in $ctrl.projects | orderBy:$ctrl.orderProp">
       <!-- <a ui-sref="main.project({ projectId: project.id })">{{ project.name }}</a> -->
       <a ui-sref-active="active" ng-click="$ctrl.setActiveProject(project.id)"
         ui-sref="main.project({ projectId: project.id })">{{ project.name }}
@@ -16,15 +21,16 @@
         </ul> -->
       </div>
       <br>
-    </li>
-  </ul>
-
-  <!-- <div ng-show="project.id === {{$ctrl.activeProjectId}}"> -->
-  <!-- <ui-view ></ui-view> -->
-  <!-- </div> -->
+    </div>
+    <!-- <ProjectItem /> -->
+    <!-- <CreateForm /> -->
+  </div>
 </div>
 
 
-<br><br><br>
+
+
+
+<br>
 <h5>Data:</h5>
 {{ $ctrl.projects }}

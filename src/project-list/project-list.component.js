@@ -1,6 +1,7 @@
 'use strict';
 
 import angular from 'angular';
+// import uiRouter from '@uirouter/angularjs/release/angular-ui-router';
 
 // import template from '!ngtemplate-loader?requireAngular!html-loader!project-list/project-list.template.html';
 // import projectCore from 'core/project/project.module';
@@ -16,7 +17,7 @@ export default function() {
 }
 
 class ProjectListCtrl {
-  constructor(/*Project*/) {
+  constructor() {
     console.log(this.activeProjectId);
     this.activeProjectId = -1;
     // this.projects = Project.query(
@@ -29,8 +30,9 @@ class ProjectListCtrl {
     // this.orderProp = 'name';
   }
 
-  setActiveProject(projectId) {
-    this.activeProjectId = projectId;
+  setActiveProject(prjId) {
+    // .go('main.project', { projectId: prjId } );
+    this.activeProjectId = prjId;
   }
 
   // $onInit() {
@@ -39,6 +41,7 @@ class ProjectListCtrl {
   // }
 }
 
+// ProjectListCtrl.$inject = ['$stateProvider'];
 // ProjectListCtrl.$inject = ['Project'];
 
 // function success(success) {

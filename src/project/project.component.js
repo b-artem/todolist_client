@@ -15,8 +15,22 @@ export default function() {
 
 class ProjectCtrl {
   constructor(/*Project*/) {
+    this.state = {
+      open: false
+    }
+    console.log(this.activeProjectId);
+    this.activeProjectId = -1;
     // this.projects = Projects.query();
     // this.project = Project.get({ id: 1 });
+  }
+
+  toggle() {
+    this.state.open = !this.state.open;
+    console.log('project open ' + this.project.id + ' ' + this.state.open);
+  }
+
+  setActiveProject(prjId) {
+    this.activeProjectId = prjId;
   }
 }
 

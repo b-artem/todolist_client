@@ -28,8 +28,8 @@ export default function config($authProvider, $stateProvider) {
   }
 
   var projectState = {
-    name: 'main.project',
-    url: '/{projectId}',
+    name: 'main.tasks',
+    url: '/{projectId}/tasks',
     component: 'project',
     resolve: {
       // project: ['Project', '$stateParams', function(Project, $stateParams) {

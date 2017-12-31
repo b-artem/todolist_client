@@ -18,8 +18,8 @@ export default function() {
 
 class ProjectListCtrl {
   constructor() {
-    console.log(this.activeProjectId);
-    this.activeProjectId = -1;
+    // console.log(this.activeProjectId);
+    // this.activeProjectId = -1;
     // this.projects = Project.query(
     //   function(success) {
     //     console.log('All cool!');

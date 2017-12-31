@@ -1,46 +1,16 @@
 <div id="projects" class="row">
+  <h2>Projects</h2>
+
+  <div class="alert-success mb-10">
+    <p class="mb-5"><b>Well done!</b> You have successfully done all tasks.</p>
+  </div>
+  
   <div class="col-sm-8 sm-offset-2">
-    <h2>Projects</h2>
-    <div class="alert-success mb-10">
-      <p class="mb-5"><b>Well done!</b> You have successfully done all tasks.</p>
-    </div>
-
-    <div class="project" ng-repeat="project in $ctrl.projects | orderBy:$ctrl.orderProp">
-      <!-- GONNA ADD SOON -->
-      <!-- <div className="project-edit">
-        <Form>
-          <TextField />
-          <Button bsStyle="primary" className="mb-5 mr-5">Save</Button>
-          <Button bsStyle="default" className="mb-5 mr-5" onClick={this.closeEdit}>Cancel</Button>
-        </Form>
-      </div> -->
-
-      <div class="project-info">
-        <div class="project-info__header">
-          <p class="project-info__title" ng-click="$ctrl.setActiveProject(project.id)"
-             ui-sref="main.project({ projectId: project.id })" ui-sref-active="active">
-            <span class="project-info__title-icon icon icon-arrow-up" />
-            {{ project.name }}
-          </p>
-          <div class="project-info__actions">
-            <span class="align-middle d-inline-block mb-5 mr-5" onClick="">Edit</span>
-            <!-- <DeleteModal /> TODO-->
-          </div>
-        </div>
-
-        <div class="project-info__body" ng-show="project.id === $ctrl.activeProjectId">
-          <ui-view ></ui-view>
-        </div>
-      </div>
-    </div>
-
-    <!-- <CreateForm /> -->
+    <project ng-repeat="project in $ctrl.projects | orderBy:$ctrl.orderProp"
+             project="project" on-delete="$ctrl.deleteProject(project)"
+             on-update="$ctrl.updateProject(project, prop, value)"></project>
   </div>
 </div>
-
-
-
-
 
 <br>
 <h5>Data:</h5>

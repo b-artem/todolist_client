@@ -1,14 +1,45 @@
+<div class="project" ng-class="{ edit:false }">
+  <!-- GONNA ADD SOON -->
+  <!-- <div className="project-edit">
+    <Form>
+      <TextField />
+      <Button bsStyle="primary" className="mb-5 mr-5">Save</Button>
+      <Button bsStyle="default" className="mb-5 mr-5" onClick={this.closeEdit}>Cancel</Button>
+    </Form>
+  </div> -->
+
+  <div class="project-info" ng-class="{ open:$ctrl.state.open }">
+    <div class="project-info__header">
+      <p class="project-info__title" ng-click="$ctrl.toggle()"
+         ui-sref="main.project({ projectId: project.id })" ui-sref-active="active">
+        <span class="project-info__title-icon icon icon-arrow-up" />
+        {{ $ctrl.project.name }}
+      </p>
+      <div class="project-info__actions">
+        <span class="align-middle d-inline-block mb-5 mr-5" onClick="">Edit</span>
+        <!-- <DeleteModal /> TODO-->
+      </div>
+    </div>
+
+    <div class="project-info__body" ng-show="$ctrl.state.open">
+      <div class="project-task" ng-repeat="task in $ctrl.project.tasks">
+        <label class="checkbox-inline">
+          <input type="checkbox" value="">{{ task.name }}
+          <div class="in-green-500 font-10">"23/02/2017"</div>
+        </label>
+        <div class="no-shrink pt-5">
+          <!-- <CommentModal /> -->
+          <span class="align-middle d-inline-block mb-5">Date</span>
+          <span class="align-middle d-inline-block mb-5">Edit</span>
+          <!-- <DeleteModal /> -->
+        </div>
+      </div>
 
 
-  <div class="project-task" ng-repeat="task in $ctrl.project.tasks">
-    <label class="checkbox-inline">
-      <input type="checkbox" value="">{{ task.name }}
-      <div class="in-green-500 font-10">"23/02/2017"</div>
-    </label>
-    <div class="no-shrink pt-5">
-      <!-- <CommentModal /> -->
-      <span class="align-middle d-inline-block mb-5">Date</span>
-      <span class="align-middle d-inline-block mb-5">Edit</span>
-      <!-- <DeleteModal /> -->
+      <!-- <ui-view ></ui-view> -->
     </div>
   </div>
+</div>
+
+<!-- <CreateForm /> -->
+</div>

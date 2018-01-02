@@ -4,11 +4,12 @@
   <div class="alert-success mb-10">
     <p class="mb-5"><b>Well done!</b> You have successfully done all tasks.</p>
   </div>
-  
+
   <div class="col-sm-8 sm-offset-2">
     <project ng-repeat="project in $ctrl.projects | orderBy:$ctrl.orderProp"
              project="project" on-delete="$ctrl.deleteProject(project)"
              on-update="$ctrl.updateProject(project, prop, value)"></project>
+    <create-form on-create="$ctrl.createProject(project)"></create-form>
   </div>
 </div>
 

@@ -29,6 +29,10 @@ class ProjectCtrl {
     console.log('project open ' + this.project.id + ' ' + this.state.open);
   }
 
+  delete() {
+    this.onDelete({ project: this.project })
+  }
+
   setActiveProject(prjId) {
     this.activeProjectId = prjId;
   }

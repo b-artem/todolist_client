@@ -4,8 +4,9 @@
 import angular from 'angular';
 
 import projectListComponent from './project-list.component';
+import createFormComponent from 'create-form/create-form.module';
 
-export default angular.module('todoList.projectList', []).
+export default angular.module('todoList.projectList', [createFormComponent]).
   component('projectList', projectListComponent()).
   name;
 

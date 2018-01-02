@@ -30,6 +30,10 @@ class ProjectListCtrl {
     // this.orderProp = 'name';
   }
 
+  createProject(project) {
+    this.projects.push(project);
+  }
+
   setActiveProject(prjId) {
     // .go('main.project', { projectId: prjId } );
     this.activeProjectId = prjId;

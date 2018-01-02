@@ -10,8 +10,8 @@
 
   <div class="project-info" ng-class="{ open:$ctrl.state.open }">
     <div class="project-info__header">
-      <p class="project-info__title" ng-click="$ctrl.toggle()"
-         ui-sref="main.project({ projectId: project.id })" ui-sref-active="active">
+      <p class="project-info__title" ng-click="$ctrl.toggle()">
+      <!-- <p class="project-info__title" ng-click="$ctrl.toggle()" ui-sref="main.project({ projectId: project.id })" ui-sref-active="active"> -->
         <span class="project-info__title-icon icon icon-arrow-up" />
         {{ $ctrl.project.name }}
       </p>

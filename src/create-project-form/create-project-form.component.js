@@ -3,19 +3,19 @@
 import angular from 'angular';
 
 import projectCore from 'core/project/project.module';
-import template from './create-form.template.html';
+import template from './create-project-form.template.html';
 
 export default function() {
   return {
     templateUrl: template,
-    controller: CreateFormCtrl,
+    controller: createProjectFormCtrl,
     bindings: {
       onCreate: '&'
     }
   }
 }
 
-class CreateFormCtrl {
+class createProjectFormCtrl {
   constructor(Project) {
     this.projectService = Project;
     this.projectName = '';
@@ -36,9 +36,9 @@ class CreateFormCtrl {
 
   resetForm() {
     this.projectName = '';
-    this.createForm.$setPristine();
+    this.createProjectForm.$setPristine();
     this.state = { showButtons: false };
   }
 }
 
-CreateFormCtrl.$inject = ['Project'];
+createProjectFormCtrl.$inject = ['Project'];

@@ -9,7 +9,7 @@
     <project ng-repeat="project in $ctrl.projects | orderBy:$ctrl.orderProp"
              project="project" on-delete="$ctrl.deleteProject(project)"
              on-update="$ctrl.updateProject(project, prop, value)"></project>
-    <create-form on-create="$ctrl.createProject(project)"></create-form>
+    <create-project-form on-create="$ctrl.createProject(project)"></create-project-form>
   </div>
 </div>
 

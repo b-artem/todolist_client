@@ -1,5 +1,5 @@
-<form name="$ctrl.createForm" novalidate
-    ng-submit="$ctrl.createForm.$valid && $ctrl.submitCreate()">
+<form name="$ctrl.createProjectForm" novalidate
+    ng-submit="$ctrl.createProjectForm.$valid && $ctrl.submitCreate()">
   <div class="mb-20">
     <div class="form-group">
       <input ng-model="$ctrl.projectName" type="text" class="form-control" placeholder="Enter Project Name..."
@@ -7,7 +7,7 @@
     </div>
   </div>
   <div ng-show="$ctrl.state.showButtons">
-    <button type="submit" ng-disabled="!$ctrl.createForm.$valid" class="btn btn-primary mb-15 mr-15 ">
+    <button type="submit" ng-disabled="!$ctrl.createProjectForm.$valid" class="btn btn-primary mb-15 mr-15 ">
       Create Project
     </button>
 
@@ -18,5 +18,5 @@
 
 </form>
 
-form valid? - {{ $ctrl.createForm.$valid }}<br>
+form valid? - {{ $ctrl.createProjectForm.$valid }}<br>
 {{ $ctrl.projectName }}

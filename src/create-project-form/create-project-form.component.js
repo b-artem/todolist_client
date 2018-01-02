@@ -28,7 +28,6 @@ class createProjectFormCtrl {
     newProject.$save(function(project) {
       self.resetForm();
       self.onCreate({ project: project });
-      // console.log('New project name is: ' + project.name);
     }, function(response) {
       console.log(response.data.errors.name);
     });

@@ -18,8 +18,6 @@ export default function() {
 
 class ProjectListCtrl {
   constructor() {
-    // console.log(this.activeProjectId);
-    // this.activeProjectId = -1;
     // this.projects = Project.query(
     //   function(success) {
     //     console.log('All cool!');
@@ -34,27 +32,14 @@ class ProjectListCtrl {
     this.projects.push(project);
   }
 
-  setActiveProject(prjId) {
-    // .go('main.project', { projectId: prjId } );
-    this.activeProjectId = prjId;
-  }
-
-  // $onInit() {
-  //   // this.activeProjectId = this.activeProjectId || 'default value';
-  //   console.log(this.activeProjectId);
+  // setActiveProject(prjId) {
+  //   // .go('main.project', { projectId: prjId } );
+  //   this.activeProjectId = prjId;
   // }
 }
 
 // ProjectListCtrl.$inject = ['$stateProvider'];
 // ProjectListCtrl.$inject = ['Project'];
-
-// function success(success) {
-//   console.log('All cool!');
-// }
-//
-// function error(error) {
-//   console.log('Error receiving data from API!' + error.status);
-// }
 
 
 

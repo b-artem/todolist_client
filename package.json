@@ -34,9 +34,7 @@
     "bootstrap": "^3.3.7",
     "bootstrap-sass": "^3.3.7",
     "classnames": "^2.2.5",
-    "express": "^4.16.2",
     "file-loader": "^1.1.5",
-    "gzippo": "^0.2.0",
     "http-server": "^0.10.0",
     "ng-token-auth": "0.0.30"
   }

@@ -4,7 +4,7 @@ import angular from 'angular';
 import uiRouter from '@uirouter/angularjs/release/angular-ui-router';
 import ngTokenAuth from 'ng-token-auth';
 import ngCookie from 'angular-cookie';
-// import ngResource from 'angular-resource';
+
 
 import logo from './images/logo.svg';
 import './scss/application.scss';
@@ -22,7 +22,6 @@ const app = angular.module('todoList', [
   uiRouter,
   ngTokenAuth,
   ngCookie,
-  // ngResource,
   projectCore,
   project,
   projectList,

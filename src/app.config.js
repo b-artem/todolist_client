@@ -20,18 +20,18 @@ export default function config($authProvider, $stateProvider) {
     resolve: {
       projects: ['Project', function(Project) {
         return Project.query();
-      }],
-      activeProjectId: ['$stateParams', function($stateParams) {
-        return parseInt($stateParams.projectId);
       }]
+      // activeProjectId: ['$stateParams', function($stateParams) {
+      //   return parseInt($stateParams.projectId);
+      // }]
     }
   }
 
-  var projectState = {
-    name: 'main.tasks',
-    url: '/{projectId}/tasks',
-    component: 'project',
-    resolve: {
+  // var projectState = {
+  //   name: 'main.tasks',
+  //   url: '/{projectId}/tasks',
+  //   component: 'project',
+  //   resolve: {
       // project: ['Project', '$stateParams', function(Project, $stateParams) {
       //   return Project.get({ id: $stateParams.projectId });
       // }]
@@ -40,24 +40,24 @@ export default function config($authProvider, $stateProvider) {
       //   return parseInt($stateParams.projectId);
       // }],
 
-      project: ['projects', '$stateParams', function(projects, $stateParams) {
-        return projects.find(function(project) {
-          return project.id === parseInt($stateParams.projectId);
-        })
-      }],
+      // project: ['projects', '$stateParams', function(projects, $stateParams) {
+      //   return projects.find(function(project) {
+      //     return project.id === parseInt($stateParams.projectId);
+      //   })
+      // }]
 
-      activeProjectId: ['$stateParams', function($stateParams) {
-        console.log(parseInt($stateParams.projectId));
-        return parseInt($stateParams.projectId);
-      }]
+      // activeProjectId: ['$stateParams', function($stateParams) {
+      //   console.log(parseInt($stateParams.projectId));
+      //   return parseInt($stateParams.projectId);
+      // }]
 
       // project: function(projects, $stateParams) {
       //   return projects.find(function(project) {
       //     return project.id == $stateParams.projectId;
       //   });
       // }
-    }
-  }
+  //   }
+  // }
 
   var loginState = {
     name: 'login',
@@ -83,7 +83,7 @@ export default function config($authProvider, $stateProvider) {
   $stateProvider.state(mainState);
   $stateProvider.state(loginState);
   $stateProvider.state(signupState);
-  $stateProvider.state(projectState)
+  // $stateProvider.state(projectState)
 
   // $routeProvider.
   //   when('/', {

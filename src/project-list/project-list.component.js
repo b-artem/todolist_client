@@ -32,6 +32,13 @@ class ProjectListCtrl {
     this.projects.push(project);
   }
 
+  deleteProject(project) {
+    var index = this.projects.indexOf(project);
+    if (index >= 0) {
+      this.projects.splice(index, 1);
+    }
+  }
+
   // setActiveProject(prjId) {
   //   // .go('main.project', { projectId: prjId } );
   //   this.activeProjectId = prjId;

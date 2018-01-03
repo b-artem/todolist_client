@@ -2,38 +2,64 @@
 
 import angular from 'angular';
 
+// import uiModal from 'angular-ui-bootstrap/src/modal';
+
 import template from './project.template.html';
 // import projectCore from 'core/project/project.module';
+import modal from 'modal/modal.module';
 
 export default function() {
   return {
-    bindings: { project: '<' },
+    bindings: {
+      project: '<',
+      onDelete: '&'
+    },
     templateUrl: template,
     controller: ProjectCtrl
   }
 }
 
 class ProjectCtrl {
-  constructor(/*Project*/) {
+  constructor($uibModal) {
+    this.$uibModal = $uibModal;
+
     this.state = {
       open: false
     }
-    // this.activeProjectId = -1;
-    // this.projects = Projects.query();
-    // this.project = Project.get({ id: 1 });
   }
 
   toggle() {
     this.state.open = !this.state.open;
   }
 
-  delete() {
-    this.onDelete({ project: this.project })
+  delete(project) {
+    var self = this;
+    this.openModal();
+    project.$delete(function(project) {
+      self.onDelete({ project: project })
+    }, function(response) {
+      console.log(response.data.error);
+    });
   }
 
   setActiveProject(prjId) {
     this.activeProjectId = prjId;
   }
+
+  openModal() {
+    var modalInstance = this.$uibModal.open({
+      // animation: $ctrl.animationsEnabled,
+      component: 'modal'
+    });
+
+    modalInstance.result.then(function() {
+      this.confirmed = true;
+      console.log('true');
+    }, function () {
+      this.confirmed = true;
+      console.log('false');
+    });
+  };
 }
 
-// ProjectCtrl.$inject = ['Project'];
+ProjectCtrl.$inject = ['$uibModal'];

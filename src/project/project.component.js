@@ -2,10 +2,7 @@
 
 import angular from 'angular';
 
-// import uiModal from 'angular-ui-bootstrap/src/modal';
-
 import template from './project.template.html';
-// import projectCore from 'core/project/project.module';
 import modal from 'modal/modal.module';
 
 export default function() {
@@ -22,7 +19,6 @@ export default function() {
 class ProjectCtrl {
   constructor($uibModal) {
     this.$uibModal = $uibModal;
-
     this.state = {
       open: false
     }
@@ -34,32 +30,28 @@ class ProjectCtrl {
 
   delete(project) {
     var self = this;
-    this.openModal();
-    project.$delete(function(project) {
-      self.onDelete({ project: project })
-    }, function(response) {
-      console.log(response.data.error);
-    });
-  }
-
-  setActiveProject(prjId) {
-    this.activeProjectId = prjId;
-  }
-
-  openModal() {
-    var modalInstance = this.$uibModal.open({
-      // animation: $ctrl.animationsEnabled,
-      component: 'modal'
-    });
-
-    modalInstance.result.then(function() {
-      this.confirmed = true;
-      console.log('true');
+    this.deleteModal().result.then(function() {
+      project.$delete(function(project) {
+        self.onDelete({ project: project })
+      }, function(response) {
+        console.log(response.data.error);
+      });
+      // console.log('result = true');
     }, function () {
-      this.confirmed = true;
-      console.log('false');
+      // console.log('result = false');
     });
-  };
+  }
+
+  deleteModal() {
+    var self = this;
+    return this.$uibModal.open({
+      component: 'modal',
+      resolve: {
+        headerText: function() { return 'Delete project' },
+        mainText: function() { return `Do you really want to delete "${self.project.name}" ?` },
+      }
+    });
+  }
 }
 
 ProjectCtrl.$inject = ['$uibModal'];

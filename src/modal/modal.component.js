@@ -10,41 +10,20 @@ export default function() {
     templateUrl: template,
     controller: ModalCtrl,
     bindings: {
+      resolve: '<',
       close: '&',
       dismiss: '&'
-      // onCreate: '&'
     }
   }
-
-  // var modalInstance = this.$uibModal.open({
-  //   // animation: true,
-  //   ariaLabelledBy: 'modal-title',
-  //   ariaDescribedBy: 'modal-body',
-  //   templateUrl: template,
-  //   // size: size,
-  //   // appendTo: parentElem,
-  //   // resolve: {
-  //   //   items: function () {
-  //   //     return $ctrl.items;
-  //   //   }
-  //   // }
-  // });
-  //
-  // return
-  //   modalInstance.result.then(function(selectedItem) {
-  //     // $ctrl.selected = selectedItem;
-  //     console.log('YES');
-  //   }, function () {
-  //     console.log('NO!!!');
-  //     // $log.info('Modal dismissed at: ' + new Date());
-  //   });
-
 }
 
 class ModalCtrl {
   constructor() {
-    // this.$uibModal = $uibModal;
-    // this.confirm = false;
+  }
+
+  $onInit() {
+    this.headerText = this.resolve.headerText;
+    this.mainText = this.resolve.mainText;
   }
 
   ok() {
@@ -54,31 +33,6 @@ class ModalCtrl {
   cancel() {
     this.dismiss({ $value: false });
   }
-
-  // open() {
-  //   // var self = this;
-  //   var modalInstance = this.$uibModal.open({
-  //     // animation: true,
-  //     ariaLabelledBy: 'modal-title',
-  //     ariaDescribedBy: 'modal-body',
-  //     templateUrl: template,
-  //     // size: size,
-  //     // appendTo: parentElem,
-  //     // resolve: {
-  //     //   items: function () {
-  //     //     return $ctrl.items;
-  //     //   }
-  //     // }
-  //   });
-  //
-  //   modalInstance.result.then(function(selectedItem) {
-  //     // $ctrl.selected = selectedItem;
-  //     console.log('YES');
-  //   }, function () {
-  //     console.log('NO!!!');
-  //     // $log.info('Modal dismissed at: ' + new Date());
-  //   });
-  // }
 }
 
 // ModalCtrl.$inject = ['$uibModal'];

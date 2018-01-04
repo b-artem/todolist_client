@@ -10,7 +10,7 @@ import template from './project-list.template.html';
 
 export default function() {
   return {
-    bindings: { projects: '<', activeProjectId: '<' },
+    bindings: { projects: '<' },
     templateUrl: template,
     controller: ProjectListCtrl
   }
@@ -18,6 +18,7 @@ export default function() {
 
 class ProjectListCtrl {
   constructor() {
+    this.orderProp = 'created_at';
     // this.projects = Project.query(
     //   function(success) {
     //     console.log('All cool!');
@@ -25,7 +26,6 @@ class ProjectListCtrl {
     //   function(error) {
     //     console.log('Error receiving data from API!' + error.status);
     //   });
-    // this.orderProp = 'name';
   }
 
   createProject(project) {

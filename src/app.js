@@ -11,7 +11,6 @@ import './scss/application.scss';
 
 import config from './app.config';
 import projectCore from './core/project/project.module';
-import project from './project/project.module';
 import projectList from './project-list/project-list.module';
 import signup from './signup/signup.module';
 import login from './login/login.module';
@@ -23,7 +22,6 @@ const app = angular.module('todoList', [
   ngTokenAuth,
   ngCookie,
   projectCore,
-  project,
   projectList,
   signup,
   login,

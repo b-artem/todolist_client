@@ -1,0 +1,22 @@
+<form name="$ctrl.createTaskForm" novalidate
+    ng-submit="$ctrl.createTaskForm.$valid && $ctrl.submitCreate()">
+  <div class="mb-20">
+    <div class="form-group">
+      <input ng-model="$ctrl.taskName" type="text" class="form-control" placeholder="Enter task Name..."
+      ng-focus="$ctrl.state.showButtons = true" required />
+    </div>
+  </div>
+  <div ng-show="$ctrl.state.showButtons">
+    <button type="submit" ng-disabled="!$ctrl.createTaskForm.$valid" class="btn btn-primary mb-15 mr-15 ">
+      Create Task
+    </button>
+
+    <button type="button" ng-click="$ctrl.resetForm()" class="btn btn-default mb-15 mr-15 ">
+      Cancel
+    </button>
+  </div>
+
+</form>
+
+form valid? - {{ $ctrl.createTaskForm.$valid }}<br>
+{{ $ctrl.taskName }}

@@ -1,4 +1,5 @@
 <div class="project" ng-class="{ edit:$ctrl.state.edit }">
+
   <div class="project-edit">
     <form name="$ctrl.editProjectForm" novalidate
       ng-submit="$ctrl.editProjectForm.$valid && $ctrl.submitEdit()">
@@ -24,21 +25,7 @@
     </div>
 
     <div class="project-info__body" ng-show="$ctrl.state.open">
-      <div class="project-task" ng-repeat="task in $ctrl.project.tasks">
-        <label class="checkbox-inline">
-          <input type="checkbox" value="">{{ task.name }}
-          <div class="in-green-500 font-10">"23/02/2017"</div>
-        </label>
-        <div class="no-shrink pt-5">
-          <!-- <CommentModal /> -->
-          <span class="align-middle d-inline-block mb-5">Date</span>
-          <span class="align-middle d-inline-block mb-5">Edit</span>
-          <!-- <DeleteModal /> -->
-        </div>
-      </div>
-
-
-      <!-- <ui-view ></ui-view> -->
+      <task-list tasks="$ctrl.project.tasks"></task-list>
     </div>
   </div>
 </div>

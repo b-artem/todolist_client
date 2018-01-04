@@ -1,24 +1,25 @@
-<div class="project" ng-class="{ edit:false }">
-  <!-- GONNA ADD SOON -->
-  <!-- <div className="project-edit">
-    <Form>
-      <TextField />
-      <Button bsStyle="primary" className="mb-5 mr-5">Save</Button>
-      <Button bsStyle="default" className="mb-5 mr-5" onClick={this.closeEdit}>Cancel</Button>
-    </Form>
-  </div> -->
+<div class="project" ng-class="{ edit:$ctrl.state.edit }">
+  <div class="project-edit">
+    <form name="$ctrl.editProjectForm" novalidate
+      ng-submit="$ctrl.editProjectForm.$valid && $ctrl.submitEdit()">
+      <div class="form-group mb-20">
+        <input ng-model="$ctrl.project.name" type="text" class="form-control" required />
+      </div>
+      <button type="submit" ng-disabled="!$ctrl.editProjectForm.$valid || $ctrl.editProjectForm.$pristine" class="btn btn-primary mb-5 mr-5">Save</button>
+      <button type="button" class="btn btn-default mb-5 mr-5" ng-click="$ctrl.cancelEdit()">Cancel</button>
+    </form>
+  </div>
 
   <div class="project-info" ng-class="{ open:$ctrl.state.open }">
     <div class="project-info__header">
-      <p class="project-info__title" ng-click="$ctrl.toggle()">
+      <p class="project-info__title" ng-click="$ctrl.toggleOpen()">
       <!-- <p class="project-info__title" ng-click="$ctrl.toggle()" ui-sref="main.project({ projectId: project.id })" ui-sref-active="active"> -->
         <span class="project-info__title-icon icon icon-arrow-up" />
         {{ $ctrl.project.name }}
       </p>
       <div class="project-info__actions">
-        <span class="align-middle d-inline-block mb-5 mr-5" onClick="">Edit</span>
-        <span class="align-middle d-inline-block mb-5 mr-5" ng-click="$ctrl.delete($ctrl.project)">Del</span>
-        <!-- <DeleteModal /> TODO-->
+        <span class="align-middle d-inline-block mb-5 mr-5" ng-click="$ctrl.toggleEdit()">Edit</span>
+        <span class="align-middle d-inline-block mb-5 mr-5" ng-click="$ctrl.delete()">Del</span>
       </div>
     </div>
 

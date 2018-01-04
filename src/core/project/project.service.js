@@ -9,5 +9,7 @@ projectService.$inject = ['$resource'];
 
 // $resource(url, [paramDefaults], [actions], options);
 export default function projectService($resource) {
-  return $resource(apiUrl + '/projects/:id', { id: '@id' })
+  return $resource(apiUrl + '/projects/:id', { id: '@id' }, {
+    'update': { method: 'PATCH' }
+  });
 }

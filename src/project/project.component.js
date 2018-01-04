@@ -20,19 +20,50 @@ class ProjectCtrl {
   constructor($uibModal) {
     this.$uibModal = $uibModal;
     this.state = {
-      open: false
+      open: false,
+      edit: false
     }
   }
 
-  toggle() {
+  $onInit() {
+    this.initialName = this.project.name;
+  }
+
+  toggleOpen() {
     this.state.open = !this.state.open;
   }
 
-  delete(project) {
+  toggleEdit() {
+    this.state.edit = !this.state.edit;
+  }
+
+  submitEdit() {
+    var self = this;
+    this.project.$update(function() {
+      self.initialName = self.project.name;
+      self.resetForm();
+      console.log('new name saved');
+    }, function(response) {
+      self.project.name = self.initialName;
+      console.log(response.data.error);
+    });
+  }
+
+  resetForm() {
+    this.editProjectForm.$setPristine();
+    this.state.edit = false;
+  }
+
+  cancelEdit() {
+    this.project.name = this.initialName;
+    this.resetForm();
+  }
+
+  delete() {
     var self = this;
     this.deleteModal().result.then(function() {
-      project.$delete(function(project) {
-        self.onDelete({ project: project })
+      self.project.$delete(function() {
+        self.onDelete({ project: self.project })
       }, function(response) {
         console.log(response.data.error);
       });

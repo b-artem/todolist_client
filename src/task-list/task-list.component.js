@@ -6,7 +6,10 @@ import template from './task-list.template.html';
 
 export default function() {
   return {
-    bindings: { tasks: '<' },
+    bindings: {
+      projectId: '<',
+      tasks: '<'
+    },
     templateUrl: template,
     controller: TaskListCtrl
   }

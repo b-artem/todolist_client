@@ -2,7 +2,7 @@
 
 import angular from 'angular';
 
-// import taskCore from 'core/task/task.module';
+import taskCore from 'core/task/task.module';
 import template from './create-task-form.template.html';
 
 export default function() {
@@ -10,21 +10,22 @@ export default function() {
     templateUrl: template,
     controller: createTaskFormCtrl,
     bindings: {
+      projectId: '<',
       onCreate: '&'
     }
   }
 }
 
 class createTaskFormCtrl {
-  constructor(/*Task*/) {
-    // this.taskService = Task;
+  constructor(Task) {
+    this.taskService = Task;
     this.taskName = '';
     this.state = { showButtons: false };
   }
 
   submitCreate() {
     var self = this;
-    var newTask = new this.taskService({ name: this.taskName });
+    var newTask = new this.taskService({ projectId: this.projectId, name: this.taskName });
     newTask.$save(function(task) {
       self.resetForm();
       self.onCreate({ task: task });
@@ -40,4 +41,4 @@ class createTaskFormCtrl {
   }
 }
 
-// createTaskFormCtrl.$inject = ['Task'];
+createTaskFormCtrl.$inject = ['Task'];

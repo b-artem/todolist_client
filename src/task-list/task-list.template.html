@@ -1,6 +1,5 @@
-<!-- TODO sorting by date-->
 <task ng-repeat="task in $ctrl.tasks | orderBy:$ctrl.orderProp"
       task="task">
       <!-- project="project" on-delete="$ctrl.deleteProject(project)" -->
 </task>
-<create-task-form on-create="$ctrl.createTask(task)"></create-task-form>
+<create-task-form project-id="$ctrl.projectId" on-create="$ctrl.createTask(task)"></create-task-form>

@@ -25,7 +25,7 @@ class createTaskFormCtrl {
 
   submitCreate() {
     var self = this;
-    var newTask = new this.taskService({ projectId: this.projectId, name: this.taskName });
+    var newTask = new this.taskService({ project_id: this.projectId, name: this.taskName });
     newTask.$save(function(task) {
       self.resetForm();
       self.onCreate({ task: task });

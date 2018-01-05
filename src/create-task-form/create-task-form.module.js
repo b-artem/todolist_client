@@ -3,8 +3,8 @@
 import angular from 'angular';
 
 import createTaskFormComponent from './create-task-form.component';
-import taskCore from 'core/task/task.module';
+import taskService from 'core/task/task.module';
 
-export default angular.module('todoList.createTaskForm', [taskCore]).
+export default angular.module('todoList.createTaskForm', [taskService]).
   component('createTaskForm', createTaskFormComponent()).
   name;

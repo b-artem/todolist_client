@@ -1,5 +1,4 @@
 <task ng-repeat="task in $ctrl.tasks | orderBy:$ctrl.orderProp"
-      task="task">
-      <!-- project="project" on-delete="$ctrl.deleteProject(project)" -->
+      task="task" on-delete="$ctrl.deleteTask(task)">
 </task>
 <create-task-form project-id="$ctrl.projectId" on-create="$ctrl.createTask(task)"></create-task-form>

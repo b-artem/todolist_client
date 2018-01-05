@@ -7,7 +7,7 @@ import ngTokenAuth from 'ng-token-auth';
 import ngCookie from 'angular-cookie';
 import uiRouter from '@uirouter/angularjs/release/angular-ui-router';
 
-import projectCore from 'core/project/project.module';
+import projectService from 'core/project/project.module';
 
 config.$inject = ['$authProvider', '$stateProvider'];
 

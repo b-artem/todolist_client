@@ -3,7 +3,7 @@
 import angular from 'angular';
 
 import template from './task.template.html';
-// import modal from 'modal/modal.module';
+import modal from 'modal/modal.module';
 
 export default function() {
   return {
@@ -17,17 +17,18 @@ export default function() {
 }
 
 class TaskCtrl {
-  constructor(/*$uibModal*/) {
-    // this.$uibModal = $uibModal;
+  constructor(Task, $uibModal) {
+    this.taskService = Task;
+    this.$uibModal = $uibModal;
     // this.state = {
     //   open: false,
     //   edit: false
     // }
   }
 
-  // $onInit() {
-  //   this.initialName = this.project.name;
-  // }
+  $onInit() {
+    this.task = new this.taskService(this.task);
+  }
   //
   // toggleOpen() {
   //   this.state.open = !this.state.open;
@@ -59,30 +60,28 @@ class TaskCtrl {
   //   this.resetForm();
   // }
   //
-  // delete() {
-  //   var self = this;
-  //   this.deleteModal().result.then(function() {
-  //     self.project.$delete(function() {
-  //       self.onDelete({ project: self.project })
-  //     }, function(response) {
-  //       console.log(response.data.error);
-  //     });
-  //     // console.log('result = true');
-  //   }, function () {
-  //     // console.log('result = false');
-  //   });
-  // }
-  //
-  // deleteModal() {
-  //   var self = this;
-  //   return this.$uibModal.open({
-  //     component: 'modal',
-  //     resolve: {
-  //       headerText: function() { return 'Delete project' },
-  //       mainText: function() { return `Do you really want to delete "${self.project.name}" ?` },
-  //     }
-  //   });
-  // }
+  delete() {
+    var self = this;
+    this.deleteModal().result.then(function() {
+      self.task.$delete(function() {
+        self.onDelete(self.task);
+      }, function(response) {
+        console.log(response.data.error);
+      });
+    }, function () {
+    });
+  }
+
+  deleteModal() {
+    var self = this;
+    return this.$uibModal.open({
+      component: 'modal',
+      resolve: {
+        headerText: function() { return 'Delete task' },
+        mainText: function() { return `Do you really want to delete "${self.task.name}" task?` },
+      }
+    });
+  }
 }
 
-// TaskCtrl.$inject = ['$uibModal'];
+TaskCtrl.$inject = ['Task', '$uibModal'];

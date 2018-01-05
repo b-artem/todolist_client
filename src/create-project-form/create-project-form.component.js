@@ -8,14 +8,14 @@ import template from './create-project-form.template.html';
 export default function() {
   return {
     templateUrl: template,
-    controller: createProjectFormCtrl,
+    controller: CreateProjectFormCtrl,
     bindings: {
       onCreate: '&'
     }
   }
 }
 
-class createProjectFormCtrl {
+class CreateProjectFormCtrl {
   constructor(Project) {
     this.projectService = Project;
     this.projectName = '';
@@ -40,4 +40,4 @@ class createProjectFormCtrl {
   }
 }
 
-createProjectFormCtrl.$inject = ['Project'];
+CreateProjectFormCtrl.$inject = ['Project'];

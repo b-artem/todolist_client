@@ -63,7 +63,7 @@ class ProjectCtrl {
     var self = this;
     this.deleteModal().result.then(function() {
       self.project.$delete(function() {
-        self.onDelete({ project: self.project })
+        self.onDelete(self.project);
       }, function(response) {
         console.log(response.data.error);
       });

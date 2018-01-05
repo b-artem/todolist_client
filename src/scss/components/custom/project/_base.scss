@@ -56,10 +56,10 @@ $project-indent-right:  $main-padding-horizontal-base;
   font-size: 14px;
   margin-top: 8px;
 }
-// .project-info__body {
-//   height: 0;
-//   overflow: hidden;
-// }
+.project-info__body {
+  height: 0;
+  overflow: hidden;
+}
 .project-edit {
   height: 0;
   overflow: hidden;

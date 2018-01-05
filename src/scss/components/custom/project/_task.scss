@@ -6,6 +6,9 @@
   border-bottom: 1px solid $base-el-border-color;
   min-height: 50px;
 }
+.project-task-edit {
+  border-bottom: 1px solid $base-el-border-color;
+}
 .project-task-edit-btn {
   padding: 10px $project-indent-right 5px $project-indent-left;
 }

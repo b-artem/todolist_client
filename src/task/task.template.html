@@ -13,8 +13,8 @@
 <div class="project-task" ng-hide="$ctrl.state.edit">
   <form class="flex-grow mb-0">
     <label class="checkbox-inline">
-      <input type="checkbox" value="">
-      {{ $ctrl.task.name }}
+      <input type="checkbox" ng-model="$ctrl.task.done" ng-change="$ctrl.toggleDone()">
+      <span ng-class="{ done : $ctrl.task.done}">{{ $ctrl.task.name }}</span>
       <div class="in-green-500 font-10">"23/02/2017"</div>
     </label>
   </form>

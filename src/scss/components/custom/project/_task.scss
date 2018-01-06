@@ -5,6 +5,9 @@
   padding: 0 $project-indent-right 0 $project-indent-left;
   border-bottom: 1px solid $base-el-border-color;
   min-height: 50px;
+  span.done {
+    text-decoration: line-through;
+  }
 }
 .project-task-edit {
   border-bottom: 1px solid $base-el-border-color;

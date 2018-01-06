@@ -1,3 +1,7 @@
+<div class="alert alert-success mb-10" ng-show="$ctrl.state.allDone">
+  <p class="mb-5"><b>Well done!</b> You have successfully done all tasks.</p>
+</div>
+
 <div class="project" ng-class="{ edit:$ctrl.state.edit }">
 
   <div class="project-edit">
@@ -25,10 +29,12 @@
     </div>
 
     <div class="project-info__body" ng-show="$ctrl.state.open">
-      <task-list tasks="$ctrl.project.tasks" project-id="$ctrl.project.id"></task-list>
+      <task-list tasks="$ctrl.project.tasks" project-id="$ctrl.project.id" on-update="$ctrl.checkAllDone()"></task-list>
     </div>
   </div>
 </div>
 
 <!-- <CreateForm /> -->
 </div>
+
+{{ $ctrl.state.allDone }}

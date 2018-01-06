@@ -9,7 +9,8 @@ export default function() {
   return {
     bindings: {
       task: '<',
-      onDelete: '&'
+      onDelete: '&',
+      onToggleDone: '&'
     },
     templateUrl: template,
     controller: TaskCtrl
@@ -37,6 +38,15 @@ class TaskCtrl {
   //
   toggleEdit() {
     this.state.edit = !this.state.edit;
+  }
+
+  toggleDone() {
+    var self = this;
+    this.task.$update(function() {
+      self.onToggleDone();
+    }, function(response) {
+      console.log(response.data.error);
+    })
   }
 
   submitEdit() {

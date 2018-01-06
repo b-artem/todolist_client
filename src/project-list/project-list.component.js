@@ -10,7 +10,9 @@ import template from './project-list.template.html';
 
 export default function() {
   return {
-    bindings: { projects: '<' },
+    bindings: {
+      projects: '<'
+    },
     templateUrl: template,
     controller: ProjectListCtrl
   }

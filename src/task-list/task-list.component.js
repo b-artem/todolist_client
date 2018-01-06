@@ -8,7 +8,8 @@ export default function() {
   return {
     bindings: {
       projectId: '<',
-      tasks: '<'
+      tasks: '<',
+      onUpdate: '&'
     },
     templateUrl: template,
     controller: TaskListCtrl
@@ -28,6 +29,14 @@ class TaskListCtrl {
     var index = this.tasks.indexOf(task);
     if (index >= 0) {
       this.tasks.splice(index, 1);
+    }
+  }
+
+  toggleDone(task) {
+    var index = this.tasks.indexOf(task);
+    if (index >= 0) {
+      this.tasks[index].done = !this.tasks[index].done;
+      this.onUpdate(this.tasks);
     }
   }
 }

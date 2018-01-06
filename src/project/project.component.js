@@ -21,12 +21,38 @@ class ProjectCtrl {
     this.$uibModal = $uibModal;
     this.state = {
       open: false,
-      edit: false
+      edit: false,
+      allDone: false
     }
   }
 
   $onInit() {
     this.initialName = this.project.name;
+    this.currentTasks = this.project.tasks;
+    this.checkAllDone();
+  }
+
+  // $onChanges(changes) {
+  //   console.log(changes)
+  //   if (changes.project.currentValue) {
+  //     console.log("lj")
+  //   }
+  // }
+
+  // $doCheck() {
+  //   if (this.currentTasks !== this.tasks) {
+  //     console.log("I'm watching you!");
+  //     this.currentTasks = this.tasks;
+  //   }
+  // }
+
+  checkAllDone() {
+    // var self = this;
+    var tasks = this.project.tasks;
+    for(var i in tasks) {
+      if(!tasks[i].done) return this.state.allDone = false;
+    }
+    return this.state.allDone = true;
   }
 
   toggleOpen() {
@@ -42,7 +68,6 @@ class ProjectCtrl {
     this.project.$update(function() {
       self.initialName = self.project.name;
       self.resetForm();
-      console.log('new name saved');
     }, function(response) {
       self.project.name = self.initialName;
       console.log(response.data.error);

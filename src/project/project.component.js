@@ -32,23 +32,9 @@ class ProjectCtrl {
     this.checkAllDone();
   }
 
-  // $onChanges(changes) {
-  //   console.log(changes)
-  //   if (changes.project.currentValue) {
-  //     console.log("lj")
-  //   }
-  // }
-
-  // $doCheck() {
-  //   if (this.currentTasks !== this.tasks) {
-  //     console.log("I'm watching you!");
-  //     this.currentTasks = this.tasks;
-  //   }
-  // }
-
   checkAllDone() {
-    // var self = this;
     var tasks = this.project.tasks;
+    if(tasks.length === 0) { return this.state.allDone = false; } 
     for(var i in tasks) {
       if(!tasks[i].done) return this.state.allDone = false;
     }

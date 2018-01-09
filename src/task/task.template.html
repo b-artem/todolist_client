@@ -15,12 +15,13 @@
     <label class="checkbox-inline">
       <input type="checkbox" ng-model="$ctrl.task.done" ng-change="$ctrl.toggleDone()">
       <span ng-class="{ done : $ctrl.task.done}">{{ $ctrl.task.name }}</span>
-      <div class="in-green-500 font-10">"23/02/2017"</div>
+      <div class="in-green-500 font-10">{{ $ctrl.task.deadline }}</div>
     </label>
   </form>
   <div class="no-shrink pt-5">
     <!-- <CommentModal /> -->
-    <span class="align-middle d-inline-block mb-5">Date</span>
+    <span class="align-middle d-inline-block mb-5" ng-click="$ctrl.setDeadline()">
+      Ddln</span>
     <span class="align-middle d-inline-block mb-5" ng-click="$ctrl.toggleEdit()">Edit</span>
     <span class="align-middle d-inline-block mb-5" ng-click="$ctrl.delete()">Del</span>
     <!-- <DeleteModal /> -->

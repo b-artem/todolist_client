@@ -34,7 +34,7 @@ class ProjectCtrl {
 
   checkAllDone() {
     var tasks = this.project.tasks;
-    if(tasks.length === 0) { return this.state.allDone = false; } 
+    if(tasks.length === 0) { return this.state.allDone = false; }
     for(var i in tasks) {
       if(!tasks[i].done) return this.state.allDone = false;
     }
@@ -78,9 +78,7 @@ class ProjectCtrl {
       }, function(response) {
         console.log(response.data.error);
       });
-      // console.log('result = true');
-    }, function () {
-      // console.log('result = false');
+      }, function () {
     });
   }
 

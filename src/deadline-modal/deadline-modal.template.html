@@ -1,0 +1,49 @@
+<div class="modal-header">
+  <h3 class="modal-title in-black text-center">{{ $ctrl.headerText }}</h3>
+</div>
+
+<form name="deadlineForm" ng-submit="deadlineForm.$valid && $ctrl.ok()" novalidate>
+  <div class="modal-body pb-5">
+    <div class="row">
+      <div class="form-group col-sm-3">
+        <label><strong>Date</strong></label>
+        <input name="date" ng-model="$ctrl.deadline" type="text" class="form-control" uib-datepicker-popup
+               is-open="$ctrl.popupDate.opened" datepicker-options="$ctrl.dateOptions"
+               ng-click="$ctrl.openDate()" show-button-bar="false" />
+      </div>
+
+        <!-- <input type="text" class="form-control" ng-model="$ctrl.date" ng-click="$ctrl.openDate()"/>
+        <div ng-show="$ctrl.state.openDate" style="display:inline-block; min-height:290px;">
+          <div uib-datepicker ng-model="$ctrl.date" class="well well-sm" datepicker-options="$ctrl.dateOptions"></div>
+        </div> -->
+
+       <!-- <span class="input-group-btn">
+       <button type="button" class="btn btn-default" ng-click="$ctrl.openDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+     </span> -->
+      <div class="form-group col-sm-3">
+        <label><strong>Time</strong></label>
+        <div uib-timepicker ng-model="$ctrl.deadline"
+             show-meridian="false" minute-step="30"></div>
+        <!-- <input type="text" class="form-control" uib-datepicker-popup ng-model="$ctrl.time" /> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <div class="row">
+      <div class="col-sm-3">
+        <button type="submit" ng-disabled="!deadlineForm.$valid" class="btn btn-primary datetime">
+          Save
+        </button>
+      </div>
+      <div class="col-sm-3">
+        <button type="button" class="btn btn-default datetime" ng-click="$ctrl.cancel()">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<!-- <div uib-datepicker ng-model="$ctrl.deadline" class="" datepicker-options="options"></div> -->

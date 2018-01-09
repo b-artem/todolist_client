@@ -22,7 +22,6 @@ class TaskCtrl {
     this.taskService = Task;
     this.$uibModal = $uibModal;
     this.state = {
-      // open: false,
       edit: false
     }
   }
@@ -31,11 +30,7 @@ class TaskCtrl {
     this.task = new this.taskService(this.task);
     this.initialName = this.task.name;
   }
-  //
-  // toggleOpen() {
-  //   this.state.open = !this.state.open;
-  // }
-  //
+
   toggleEdit() {
     this.state.edit = !this.state.edit;
   }
@@ -89,6 +84,28 @@ class TaskCtrl {
       resolve: {
         headerText: function() { return 'Delete task' },
         mainText: function() { return `Do you really want to delete "${self.task.name}" task?` },
+      }
+    });
+  }
+
+  setDeadline() {
+    var self = this;
+    this.deadlineModal(this.task.deadline).result.then(function(newDeadline) {
+      self.task.deadline = newDeadline;
+      self.task.$update(function() {
+      }, function(response) {
+        console.log(response.data.error);
+      });
+      }, function() {
+    });
+  }
+
+  deadlineModal(deadline) {
+    return this.$uibModal.open({
+      component: 'deadlineModal',
+      resolve: {
+        headerText: function() { return 'Deadline' },
+        deadline: function() { return deadline }
       }
     });
   }

@@ -4,6 +4,7 @@ import angular from 'angular';
 
 import template from './task.template.html';
 import modal from 'modal/modal.module';
+import { formatDate, formatTime } from 'utils/datetime';
 
 export default function() {
   return {
@@ -22,13 +23,15 @@ class TaskCtrl {
     this.taskService = Task;
     this.$uibModal = $uibModal;
     this.state = {
-      edit: false
+      edit: false,
+      urgent: false
     }
   }
 
   $onInit() {
     this.task = new this.taskService(this.task);
     this.initialName = this.task.name;
+    this.setUrgency();
   }
 
   toggleEdit() {
@@ -93,6 +96,7 @@ class TaskCtrl {
     this.deadlineModal(this.task.deadline).result.then(function(newDeadline) {
       self.task.deadline = newDeadline;
       self.task.$update(function() {
+        self.setUrgency();
       }, function(response) {
         console.log(response.data.error);
       });
@@ -108,6 +112,29 @@ class TaskCtrl {
         deadline: function() { return deadline }
       }
     });
+  }
+
+  setUrgency() {
+    if (this.task.deadline) {
+      var deadline = Date.parse(this.task.deadline);
+      var today = new Date();
+      var tomorrow = (new Date(today.setDate(today.getDate() + 1))).setHours(0,0,1);
+      // console.log('today ' + today);
+      // console.log('tomorrow ' + tomorrow);
+      // console.log('deadline ' + deadline);
+      // console.log(deadline > tomorrow);
+      // var tomorrow = new Date(Date.parse(today))
+      if (deadline > tomorrow) return this.state.urgent = false;
+      return this.state.urgent = true
+    }
+  }
+
+  getDate() {
+    return formatDate(this.task.deadline);
+  }
+
+  getTime() {
+    return formatTime(this.task.deadline);
   }
 }
 

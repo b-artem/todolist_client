@@ -15,7 +15,8 @@
     <label class="checkbox-inline">
       <input type="checkbox" ng-model="$ctrl.task.done" ng-change="$ctrl.toggleDone()">
       <span ng-class="{ done : $ctrl.task.done}">{{ $ctrl.task.name }}</span>
-      <div class="in-green-500 font-10">{{ $ctrl.task.deadline }}</div>
+      <div ng-class="{ 'in-red-500' : $ctrl.state.urgent, 'in-green-500' : !$ctrl.state.urgent,  }"
+           class="font-10">{{ $ctrl.getDate() + ' ' + $ctrl.getTime() }}</div>
     </label>
   </form>
   <div class="no-shrink pt-5">

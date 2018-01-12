@@ -11,6 +11,14 @@
 </div>
 
 <div class="project-task" ng-hide="$ctrl.state.edit">
+  <div class="no-shrink pt-5">
+    <div class="align-middle flex-grow project-task-actions">
+      <span ng-click="$ctrl.changePriority('up')">u</span>
+    </div>
+    <div class="align-middle flex-grow project-task-actions">
+      <span ng-click="$ctrl.changePriority('down')">d</span>
+    </div>
+  </div>
   <form class="flex-grow mb-0">
     <label class="checkbox-inline">
       <input type="checkbox" ng-model="$ctrl.task.done" ng-change="$ctrl.toggleDone()">
@@ -19,12 +27,11 @@
            class="font-10">{{ $ctrl.getDate() + ' ' + $ctrl.getTime() }}</div>
     </label>
   </form>
-  <div class="no-shrink pt-5">
+  <div class="no-shrink pt-5 project-task-actions">
     <!-- <CommentModal /> -->
     <span class="align-middle d-inline-block mb-5" ng-click="$ctrl.setDeadline()">
       Ddln</span>
     <span class="align-middle d-inline-block mb-5" ng-click="$ctrl.toggleEdit()">Edit</span>
     <span class="align-middle d-inline-block mb-5" ng-click="$ctrl.delete()">Del</span>
-    <!-- <DeleteModal /> -->
   </div>
 </div>

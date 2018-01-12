@@ -3,7 +3,6 @@
 import angular from 'angular';
 
 import template from './task.template.html';
-import modal from 'modal/modal.module';
 import { formatDate, formatTime } from 'utils/datetime';
 
 export default function() {
@@ -11,7 +10,8 @@ export default function() {
     bindings: {
       task: '<',
       onDelete: '&',
-      onToggleDone: '&'
+      onToggleDone: '&',
+      onChangePriority: '&'
     },
     templateUrl: template,
     controller: TaskCtrl
@@ -136,6 +136,28 @@ class TaskCtrl {
   getTime() {
     return formatTime(this.task.deadline);
   }
+
+  changePriority(direction) {
+    self = this;
+    if (direction != 'up' && direction != 'down') return false;
+    console.log(direction);
+    this.task.change_priority = direction;
+    this.task.$update(function() {
+      self.onChangePriority();
+    }, function(response) {
+      console.log(response.data.error);
+    });
+  }
+
+  // priorityDown() {
+  //   self = this;
+  //   this.task.change_priority = 'down'
+  //   this.task.$update(function() {
+  //     self.onPriorityDown({ priority: self.task.priority });
+  //   }, function(response) {
+  //     console.log(response.data.error);
+  //   });
+  // }
 }
 
 TaskCtrl.$inject = ['Task', '$uibModal'];

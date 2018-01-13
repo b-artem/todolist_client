@@ -119,13 +119,8 @@ class TaskCtrl {
       var deadline = Date.parse(this.task.deadline);
       var today = new Date();
       var tomorrow = (new Date(today.setDate(today.getDate() + 1))).setHours(0,0,1);
-      // console.log('today ' + today);
-      // console.log('tomorrow ' + tomorrow);
-      // console.log('deadline ' + deadline);
-      // console.log(deadline > tomorrow);
-      // var tomorrow = new Date(Date.parse(today))
       if (deadline > tomorrow) return this.state.urgent = false;
-      return this.state.urgent = true
+      this.state.urgent = true;
     }
   }
 
@@ -140,7 +135,6 @@ class TaskCtrl {
   changePriority(direction) {
     self = this;
     if (direction != 'up' && direction != 'down') return false;
-    console.log(direction);
     this.task.change_priority = direction;
     this.task.$update(function() {
       self.onChangePriority();
@@ -149,15 +143,30 @@ class TaskCtrl {
     });
   }
 
-  // priorityDown() {
-  //   self = this;
-  //   this.task.change_priority = 'down'
-  //   this.task.$update(function() {
-  //     self.onPriorityDown({ priority: self.task.priority });
-  //   }, function(response) {
-  //     console.log(response.data.error);
-  //   });
-  // }
+  comments() {
+    var self = this;
+    this.commentModal().result.then(function(/*newDeadline*/) {
+      console.log('true');
+      // self.task.deadline = newDeadline;
+      // self.task.$update(function() {
+      //   self.setUrgency();
+      // }, function(response) {
+      //   console.log(response.data.error);
+      // });
+      }, function() {
+        console.log('false');
+    });
+  }
+
+  commentModal() {
+    return this.$uibModal.open({
+      component: 'commentModal',
+      resolve: {
+        headerText: function() { return 'Add Comment' }
+        // deadline: function() { return deadline }
+      }
+    });
+  }
 }
 
 TaskCtrl.$inject = ['Task', '$uibModal'];

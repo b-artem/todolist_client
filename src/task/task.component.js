@@ -142,31 +142,6 @@ class TaskCtrl {
       console.log(response.data.error);
     });
   }
-
-  comments() {
-    var self = this;
-    this.commentModal().result.then(function(/*newDeadline*/) {
-      console.log('true');
-      // self.task.deadline = newDeadline;
-      // self.task.$update(function() {
-      //   self.setUrgency();
-      // }, function(response) {
-      //   console.log(response.data.error);
-      // });
-      }, function() {
-        console.log('false');
-    });
-  }
-
-  commentModal() {
-    return this.$uibModal.open({
-      component: 'commentModal',
-      resolve: {
-        headerText: function() { return 'Add Comment' }
-        // deadline: function() { return deadline }
-      }
-    });
-  }
 }
 
 TaskCtrl.$inject = ['Task', '$uibModal'];

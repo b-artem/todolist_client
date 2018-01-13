@@ -28,8 +28,8 @@
     </label>
   </form>
   <div class="no-shrink pt-5 project-task-actions">
-    <span class="align-middle d-inline-block mb-5" ng-click="$ctrl.comments()">
-      Com</span>
+    <comments comments="$ctrl.task.comments" project-id="$ctrl.task.project_id"
+      task-id="$ctrl.task.id"></comments>
     <span class="align-middle d-inline-block mb-5" ng-click="$ctrl.setDeadline()">
       Ddln</span>
     <span class="align-middle d-inline-block mb-5" ng-click="$ctrl.toggleEdit()">Edit</span>

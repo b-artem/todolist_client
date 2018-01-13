@@ -1,13 +1,64 @@
 <div class="modal-header">
   <h3 class="modal-title in-black">{{ $ctrl.headerText }}</h3>
+  <!-- <span class="close">&times;</span> -->
 </div>
 <div class="modal-body pb-5">
-  <p class="mb-10">
-    Comment Modal
-    <!-- {{ $ctrl.mainText }} -->
-  </p>
+  <form name="createCommentForm" novalidate>
+    <!-- ng-submit="createCommentForm.$valid && $ctrl.submitCreate()"> -->
+    <textarea name="comment" ng-model="$ctrl.commentText"  rows="4" cols="40"
+      class="form-control mb-15" placeholder="Enter Your Comment" required>
+    </textarea>
+    <div class="text-right">
+      <button ng-disabled="!createCommentForm.$valid"
+        class="btn btn-primary mb-15 mr-15" ng-click="$ctrl.ok()">Save</button>
+      <button class="btn btn-default mb-15" ng-click="$ctrl.cancel()">Cancel</button>
+    </div>
+  </form>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="$ctrl.ok()">Delete</button>
-  <button class="btn btn-default" ng-click="$ctrl.cancel()">Cancel</button>
+  <!-- <div class="pb-5"> -->
+    <!-- <div class="divider" /> -->
+    <div ng-repeat="comment in $ctrl.comments" class="pt-15 pr-15 pb-5 pl-15">
+      <div class="text-left">
+        <span class="mr-15 in-grey-500">{{ $ctrl.formatDate(comment.created_at) }}</span>
+        <span>Del</span>
+      </div>
+      <p class="mb-5">{{ comment.text }}</p>
+    </div>
+  <!-- </div> -->
 </div>
+
+
+
+
+<!-- <div className="align-middle d-inline-block mb-5">
+  <span onClick={this.open}>
+    2 Comment
+  </span> -->
+  <!-- <Modal
+    bsSize="small"
+    show={this.state.showModal}
+    onHide={this.close}
+  >
+    <Modal.Header closeButton>
+      <Modal.Title className="in-black">Add comment</Modal.Title>
+    </Modal.Header>
+    <Modal.Body className="pb-5">
+      <TextareaField placeholder="Enter Your Comment" />
+    </Modal.Body>
+    <Modal.Footer className="text-center">
+      <Button bsStyle="primary">Save</Button>
+      <Button bsStyle="default" onClick={this.close}>Cancel</Button>
+    </Modal.Footer>
+    <div className="pb-5">
+      <div className="divider" />
+      <div className="pt-15 pr-15 pb-5 pl-15">
+        <div>
+          <span className="mr-15 in-grey-200">25/11/2018</span>
+          <span>Delete</span>
+        </div>
+        <p className="mb-5">Tourth comment to this task.</p>
+      </div>
+    </div>
+  </Modal> -->
+<!-- </div> -->

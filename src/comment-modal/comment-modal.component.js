@@ -3,6 +3,7 @@
 import angular from 'angular';
 
 import template from './comment-modal.template.html';
+import { formatDate } from 'utils/datetime';
 
 export default function() {
   return {
@@ -18,25 +19,23 @@ export default function() {
 
 class CommentModalCtrl {
   constructor() {
-    // this.popupDate = { opened: false };
-    // this.dateOptions = {
-    //   startingDay: 1,
-    //   formatYear: 'yy',
-    //   maxDate: new Date(2050, 12, 31),
-    //   minDate: new Date(2017, 1, 1),
-    //   showWeeks: false
-    // };
+    this.commentText = '';
   }
 
   $onInit() {
     this.headerText = this.resolve.headerText;
+    this.comments = this.resolve.comments;
   }
 
   ok() {
-    this.close({ $value: true });
+    this.close({ $value: this.commentText });
   }
 
   cancel() {
     this.dismiss({ $value: false });
+  }
+
+  formatDate(datetime) {
+    return formatDate(datetime);
   }
 }

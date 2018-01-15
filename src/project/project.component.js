@@ -28,14 +28,13 @@ class ProjectCtrl {
 
   $onInit() {
     this.initialName = this.project.name;
-    this.currentTasks = this.project.tasks;
-    this.checkAllDone();
+    // this.currentTasks = this.project.tasks;
+    this.checkAllDone(this.project.tasks);
   }
 
-  checkAllDone() {
-    var tasks = this.project.tasks;
-    if(tasks.length === 0) { return this.state.allDone = false; }
-    for(var i in tasks) {
+  checkAllDone(tasks) {
+    if(tasks.length === 0) return this.state.allDone = false;
+    for(var i = 0; i < tasks.length; i++) {
       if(!tasks[i].done) return this.state.allDone = false;
     }
     return this.state.allDone = true;

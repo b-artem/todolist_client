@@ -25,14 +25,14 @@ class TaskListCtrl {
 
   createTask(task) {
     this.tasks.push(task);
-    this.onUpdate(this.tasks);
+    this.onUpdate({ tasks: this.tasks });
   }
 
   deleteTask(task) {
     var index = this.tasks.indexOf(task);
     if (index >= 0) {
       this.tasks.splice(index, 1);
-      this.onUpdate(this.tasks);
+      this.onUpdate({ tasks: this.tasks });
     }
   }
 
@@ -40,7 +40,7 @@ class TaskListCtrl {
     var index = this.tasks.indexOf(task);
     if (index >= 0) {
       this.tasks[index].done = !this.tasks[index].done;
-      this.onUpdate(this.tasks);
+      this.onUpdate({ tasks: this.tasks });
     }
   }
 
@@ -48,7 +48,7 @@ class TaskListCtrl {
     var self = this;
     var updatedTasks = this.taskService.query({ project_id: self.projectId }, function() {
       self.tasks = updatedTasks;
-      self.onUpdate(self.tasks);
+      self.onUpdate({ tasks: self.tasks });
     });
   }
 }

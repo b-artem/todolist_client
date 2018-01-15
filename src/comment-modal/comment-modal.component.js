@@ -18,13 +18,15 @@ export default function() {
 }
 
 class CommentModalCtrl {
-  constructor() {
+  constructor(Comment) {
+    this.commentService = Comment;
     this.commentText = '';
   }
 
   $onInit() {
     this.headerText = this.resolve.headerText;
     this.comments = this.resolve.comments;
+    this.projectId = this.resolve.projectId;
   }
 
   ok() {
@@ -38,4 +40,19 @@ class CommentModalCtrl {
   formatDate(datetime) {
     return formatDate(datetime);
   }
+
+  deleteComment(comment) {
+    var self = this;
+    var deleteComment = new this.commentService(comment);
+    deleteComment.$delete({ project_id: self.projectId }, function() {
+      var index = self.comments.indexOf(comment);
+      if (index >= 0) {
+        self.comments.splice(index, 1);
+      }
+    }, function(response) {
+      console.log(response.data.error);
+    });
+  }
 }
+
+CommentModalCtrl.$inject = ['Comment'];

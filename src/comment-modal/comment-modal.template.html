@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h3 class="modal-title in-black">{{ $ctrl.headerText }}</h3>
-  <!-- <span class="close">&times;</span> -->
+  <!-- <span class="close pull-right">&times;</span> -->
 </div>
 <div class="modal-body pb-5">
   <form name="createCommentForm" novalidate>
@@ -8,6 +8,10 @@
     <textarea name="comment" ng-model="$ctrl.commentText"  rows="4" cols="40"
       class="form-control mb-15" placeholder="Enter Your Comment" required>
     </textarea>
+    <div class="text-right mb-15">
+      <span>Attach</span>
+      <input type="file" ng-model="$ctrl.attachment" display="none">
+    </div>
     <div class="text-right">
       <button ng-disabled="!createCommentForm.$valid"
         class="btn btn-primary mb-15 mr-15" ng-click="$ctrl.ok()">Save</button>
@@ -21,7 +25,7 @@
     <div ng-repeat="comment in $ctrl.comments" class="pt-15 pr-15 pb-5 pl-15">
       <div class="text-left">
         <span class="mr-15 in-grey-500">{{ $ctrl.formatDate(comment.created_at) }}</span>
-        <span>Del</span>
+        <span ng-click="$ctrl.deleteComment(comment)">Del</span>
       </div>
       <p class="mb-5">{{ comment.text }}</p>
     </div>

@@ -24,22 +24,26 @@ class CommentsCtrl {
 
   $onInit() {
     if (!this.comments) this.comments = [];
-    this.newComment = new this.commentService({
-      project_id: this.projectId,
-      task_id: this.taskId
-    });
   }
 
   show() {
     var self = this;
     this.commentModal().result.then(function(commentText) {
-      self.newComment.text = commentText;
-      self.newComment.$save(function(comment) {
+      var newComment = self.newComment(commentText);
+      newComment.$save(function(comment) {
         self.comments.push(comment);
       }, function(response) {
         console.log(response.data.error);
       });
       }, function() {
+    });
+  }
+
+  newComment(text) {
+    return new this.commentService({
+      project_id: this.projectId,
+      task_id: this.taskId,
+      text: text
     });
   }
 
@@ -49,7 +53,8 @@ class CommentsCtrl {
       component: 'commentModal',
       resolve: {
         headerText: function() { return 'Add Comment' },
-        comments: function() { return self.comments }
+        comments: function() { return self.comments },
+        projectId: function() { return self.projectId }
       }
     });
   }

@@ -3,4 +3,8 @@ button.datetime {
 }
 ul.uib-datepicker-popup {
   list-style-type: none;
-}  
+}
+textarea {
+  overflow-x: hidden;
+  resize: none;
+}

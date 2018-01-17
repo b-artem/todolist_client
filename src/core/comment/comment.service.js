@@ -11,6 +11,12 @@ commentService.$inject = ['$resource'];
 export default function commentService($resource) {
   return $resource(apiUrl + '/projects/:project_id/tasks/:task_id/comments/:id',
     { project_id: '@project_id', task_id: '@task_id', id: '@id' },
-    { 'update': { method: 'PATCH' } }
+    { 'update': { method: 'PATCH' },
+      'create': {
+        method: 'POST',
+        transformRequest: angular.identity,
+        headers: { 'Content-Type': undefined }
+      }
+    }
   );
 }

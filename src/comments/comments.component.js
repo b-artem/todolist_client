@@ -17,9 +17,10 @@ export default function() {
 }
 
 class CommentsCtrl {
-  constructor(Comment, $uibModal) {
+  constructor(Comment, $uibModal, Upload) {
     this.commentService = Comment;
     this.$uibModal = $uibModal;
+    this.upload = Upload;
   }
 
   $onInit() {
@@ -28,22 +29,33 @@ class CommentsCtrl {
 
   show() {
     var self = this;
-    this.commentModal().result.then(function(commentText) {
-      var newComment = self.newComment(commentText);
-      newComment.$save(function(comment) {
-        self.comments.push(comment);
-      }, function(response) {
-        console.log(response.data.error);
-      });
-      }, function() {
-    });
+    this.commentModal().result.then(function(commentData) {
+      if (commentData.attachment) {
+        var upload = self.upload.base64DataUrl(commentData.attachment);
+      }
+
+      if (commentData.attachment) {
+        upload.then(function(base64Url) {
+          var newComment = self.newComment(commentData);
+          newComment.attachment = base64Url;
+          newComment.$save(function(comment) {
+            self.comments.push(comment);
+          }, function(response) {
+            console.log(response.data.error);
+          });
+        }, function(errors) {
+          console.log(errors);
+        })
+      }
+    }, function() {}
+    );
   }
 
-  newComment(text) {
+  newComment(comment) {
     return new this.commentService({
       project_id: this.projectId,
       task_id: this.taskId,
-      text: text
+      text: comment.text
     });
   }
 
@@ -60,4 +72,4 @@ class CommentsCtrl {
   }
 }
 
-CommentsCtrl.$inject = ['Comment', '$uibModal'];
+CommentsCtrl.$inject = ['Comment', '$uibModal', 'Upload'];

@@ -5,12 +5,19 @@
 <div class="modal-body pb-5">
   <form name="createCommentForm" novalidate>
     <!-- ng-submit="createCommentForm.$valid && $ctrl.submitCreate()"> -->
-    <textarea name="comment" ng-model="$ctrl.commentText"  rows="4" cols="40"
+    <textarea name="comment" ng-model="$ctrl.commentData.text" rows="4" cols="40"
       class="form-control mb-15" placeholder="Enter Your Comment" required>
     </textarea>
     <div class="text-right mb-15">
-      <span>Attach</span>
-      <input type="file" ng-model="$ctrl.attachment" display="none">
+      <!-- <span>Attach</span> -->
+      <i ng-show="createCommentForm.file.$error.maxSize">File too large
+          {{errorFile.size / 1000000|number:1}}MB: max 10M</i>
+      <div class="button mb-15" name="file" ngf-select ng-model="$ctrl.commentData.attachment"
+        accept="image/jpg,image/jpeg,image/png" ngf-max-size="10MB">
+        Attach
+      </div>
+      <img ng-show="$ctrl.commentData.attachment" ngf-thumbnail="$ctrl.commentData.attachment"
+        class="thumb mb-15">
     </div>
     <div class="text-right">
       <button ng-disabled="!createCommentForm.$valid"
@@ -22,47 +29,16 @@
 <div class="modal-footer">
   <!-- <div class="pb-5"> -->
     <!-- <div class="divider" /> -->
-    <div ng-repeat="comment in $ctrl.comments" class="pt-15 pr-15 pb-5 pl-15">
+    <div ng-repeat="comment in $ctrl.comments | orderBy:$ctrl.orderProp" class="pt-15 pr-15 pb-5 pl-15">
       <div class="text-left">
         <span class="mr-15 in-grey-500">{{ $ctrl.formatDate(comment.created_at) }}</span>
         <span ng-click="$ctrl.deleteComment(comment)">Del</span>
       </div>
       <p class="mb-5">{{ comment.text }}</p>
+      <a href="{{ comment.attachment.url }}" ng-show="comment.attachment.url">
+        <img src="{{ comment.attachment.preview.url }}" ng-show="comment.attachment.preview.url"
+          width="200" height="200" alt="attachment image">
+      </a>
     </div>
   <!-- </div> -->
 </div>
-
-
-
-
-<!-- <div className="align-middle d-inline-block mb-5">
-  <span onClick={this.open}>
-    2 Comment
-  </span> -->
-  <!-- <Modal
-    bsSize="small"
-    show={this.state.showModal}
-    onHide={this.close}
-  >
-    <Modal.Header closeButton>
-      <Modal.Title className="in-black">Add comment</Modal.Title>
-    </Modal.Header>
-    <Modal.Body className="pb-5">
-      <TextareaField placeholder="Enter Your Comment" />
-    </Modal.Body>
-    <Modal.Footer className="text-center">
-      <Button bsStyle="primary">Save</Button>
-      <Button bsStyle="default" onClick={this.close}>Cancel</Button>
-    </Modal.Footer>
-    <div className="pb-5">
-      <div className="divider" />
-      <div className="pt-15 pr-15 pb-5 pl-15">
-        <div>
-          <span className="mr-15 in-grey-200">25/11/2018</span>
-          <span>Delete</span>
-        </div>
-        <p className="mb-5">Tourth comment to this task.</p>
-      </div>
-    </div>
-  </Modal> -->
-<!-- </div> -->

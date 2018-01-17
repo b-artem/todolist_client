@@ -18,9 +18,11 @@ export default function() {
 }
 
 class CommentModalCtrl {
-  constructor(Comment) {
+  constructor(Comment, Upload) {
     this.commentService = Comment;
-    this.commentText = '';
+    this.upload = Upload;
+    this.commentData = {};
+    this.orderProp = '-created_at';
   }
 
   $onInit() {
@@ -30,7 +32,7 @@ class CommentModalCtrl {
   }
 
   ok() {
-    this.close({ $value: this.commentText });
+    this.close({ $value: this.commentData });
   }
 
   cancel() {
@@ -55,4 +57,4 @@ class CommentModalCtrl {
   }
 }
 
-CommentModalCtrl.$inject = ['Comment'];
+CommentModalCtrl.$inject = ['Comment', 'Upload'];

@@ -36,8 +36,9 @@
       </div>
       <p class="mb-5">{{ comment.text }}</p>
       <a href="{{ comment.attachment.url }}" ng-show="comment.attachment.url">
-        <img src="{{ comment.attachment.preview.url }}" ng-show="comment.attachment.preview.url"
-          width="200" height="200" alt="attachment image">
+        <img class="attachment" ng-show="comment.attachment.preview.url"
+             ng-src="{{ comment.attachment.preview.url || '#' }}"
+             height="200" alt="attachment image">
       </a>
     </div>
   <!-- </div> -->

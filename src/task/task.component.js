@@ -54,7 +54,7 @@ class TaskCtrl {
       self.resetForm();
     }, function(response) {
       self.task.name = self.initialName;
-      console.log(response.data.error);
+      console.log(response.data);
     });
   }
 
@@ -139,7 +139,7 @@ class TaskCtrl {
     this.task.$update(function() {
       self.onChangePriority();
     }, function(response) {
-      console.log(response.data.error);
+      console.log(response.data);
     });
   }
 }

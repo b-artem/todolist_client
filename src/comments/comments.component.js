@@ -31,24 +31,29 @@ class CommentsCtrl {
     var self = this;
     this.commentModal().result.then(function(commentData) {
       if (commentData.attachment) {
-        var upload = self.upload.base64DataUrl(commentData.attachment);
+        self.createWithAttachment(commentData);
+      } else {
+        self.createTextOnly(commentData);
       }
+    }, function() {
+    });
+  }
 
-      if (commentData.attachment) {
-        upload.then(function(base64Url) {
-          var newComment = self.newComment(commentData);
-          newComment.attachment = base64Url;
-          newComment.$save(function(comment) {
-            self.comments.push(comment);
-          }, function(response) {
-            console.log(response.data.error);
-          });
-        }, function(errors) {
-          console.log(errors);
-        })
-      }
-    }, function() {}
-    );
+  createWithAttachment(commentData) {
+    var self = this;
+    var upload = this.upload.base64DataUrl(commentData.attachment);
+    upload.then(function(base64Url) {
+      var newComment = self.newComment(commentData);
+      newComment.attachment = base64Url;
+      self.saveComment(newComment);
+    }, function(errors) {
+      console.log(errors);
+    });
+  }
+
+  createTextOnly(commentData) {
+    var newComment = this.newComment(commentData);
+    this.saveComment(newComment);
   }
 
   newComment(comment) {
@@ -56,6 +61,15 @@ class CommentsCtrl {
       project_id: this.projectId,
       task_id: this.taskId,
       text: comment.text
+    });
+  }
+
+  saveComment(newComment) {
+    var self = this;
+    newComment.$save(function(comment) {
+      self.comments.push(comment);
+    }, function(response) {
+      console.log(response.data.error);
     });
   }
 

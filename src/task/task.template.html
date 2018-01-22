@@ -13,10 +13,10 @@
 <div class="project-task" ng-hide="$ctrl.state.edit">
   <div class="no-shrink pt-5">
     <div class="align-middle flex-grow project-task-actions">
-      <span ng-click="$ctrl.changePriority('up')">u</span>
+      <span class="glyphicon glyphicon-arrow-up" ng-click="$ctrl.changePriority('up')"></span>
     </div>
     <div class="align-middle flex-grow project-task-actions">
-      <span ng-click="$ctrl.changePriority('down')">d</span>
+      <span class="glyphicon glyphicon-arrow-down" ng-click="$ctrl.changePriority('down')"></span>
     </div>
   </div>
   <form class="flex-grow mb-0">
@@ -30,9 +30,11 @@
   <div class="no-shrink pt-5 project-task-actions">
     <comments comments="$ctrl.task.comments" project-id="$ctrl.task.project_id"
       task-id="$ctrl.task.id"></comments>
-    <span class="align-middle d-inline-block mb-5" ng-click="$ctrl.setDeadline()">
-      Ddln</span>
-    <span class="align-middle d-inline-block mb-5" ng-click="$ctrl.toggleEdit()">Edit</span>
-    <span class="align-middle d-inline-block mb-5" ng-click="$ctrl.delete()">Del</span>
+    <span class="glyphicon glyphicon-time align-middle d-inline-block mb-5 mr-5"
+      ng-click="$ctrl.setDeadline()"></span>
+    <span class="glyphicon glyphicon-pencil align-middle d-inline-block mb-5 mr-5"
+      ng-click="$ctrl.toggleEdit()"></span>
+    <span class="glyphicon glyphicon-trash align-middle d-inline-block mb-5"
+      ng-click="$ctrl.delete()"></span>
   </div>
 </div>

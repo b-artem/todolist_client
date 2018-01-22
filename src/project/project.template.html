@@ -23,8 +23,10 @@
         {{ $ctrl.project.name }}
       </p>
       <div class="project-info__actions">
-        <span class="align-middle d-inline-block mb-5 mr-5" ng-click="$ctrl.toggleEdit()">Edit</span>
-        <span class="align-middle d-inline-block mb-5 mr-5" ng-click="$ctrl.delete()">Del</span>
+        <span class="glyphicon glyphicon-pencil align-middle d-inline-block mb-5 mr-5"
+          ng-click="$ctrl.toggleEdit()"></span>
+        <span class="glyphicon glyphicon-trash align-middle d-inline-block mb-5 mr-5"
+          ng-click="$ctrl.delete()"></span>
       </div>
     </div>
 

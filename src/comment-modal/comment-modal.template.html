@@ -14,7 +14,7 @@
           {{errorFile.size / 1000000|number:1}}MB: max 10M</i>
       <div class="button mb-15" name="file" ngf-select ng-model="$ctrl.commentData.attachment"
         accept="image/jpg,image/jpeg,image/png" ngf-max-size="10MB">
-        Attach
+        <span class="glyphicon glyphicon-paperclip mr-5"></span>
       </div>
       <img ng-show="$ctrl.commentData.attachment" ngf-thumbnail="$ctrl.commentData.attachment"
         class="thumb mb-15">
@@ -32,7 +32,7 @@
     <div ng-repeat="comment in $ctrl.comments | orderBy:$ctrl.orderProp" class="pt-15 pr-15 pb-5 pl-15">
       <div class="text-left">
         <span class="mr-15 in-grey-500">{{ $ctrl.formatDate(comment.created_at) }}</span>
-        <span ng-click="$ctrl.deleteComment(comment)">Del</span>
+        <span class="glyphicon glyphicon-trash" ng-click="$ctrl.deleteComment(comment)"></span>
       </div>
       <p class="mb-5">{{ comment.text }}</p>
       <a href="{{ comment.attachment.url }}" ng-show="comment.attachment.url">

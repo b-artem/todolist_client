@@ -33,8 +33,28 @@ module.exports = {
         use: [ 'babel-loader' ]
       },
       {
-        test: /\.(png|jpg|jpeg|gif|svg|ttf|woff|woff2|eot)$/,
-        use: 'file-loader?name=[name].[ext]',
+        test: /\.(png|jpg|jpeg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images/'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(svg|ttf|woff|woff2|eot)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'fonts/'
+            }
+          }
+        ]
       },
       {
         test: /\.html$/,

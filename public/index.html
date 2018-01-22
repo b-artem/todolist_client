@@ -5,12 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= htmlWebpackPlugin.options.title %></title>
-
   </head>
 
   <body>
     <div ng-app="todoList" id="app">
-
       <header class="main-header">
         <div class="container pt-10 pb-5">
           <div class="row d-flex align-center">
@@ -27,7 +25,6 @@
               <a ui-sref="login">Log in</a>
               <a ui-sref="signup">Sign up</a>
               <logout></logout>
-              <!-- <button class="mb-5">Exit</button> -->
             </div>
           </div>
         </div>
@@ -38,8 +35,6 @@
           <ui-view></ui-view>
         </div>
       </div>
-
-      <h5>{{ 'Really working? ' + 'Yes!!!' }}</h5>
 
     </div>
   </body>

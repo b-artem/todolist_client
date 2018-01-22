@@ -9,13 +9,14 @@ import template from './login.template.html';
 export default function() {
   return {
     templateUrl: template,
-    controller: loginCtrl
+    controller: LoginCtrl
   }
 }
 
-class loginCtrl {
-  constructor($auth) {
+class LoginCtrl {
+  constructor($auth, $state) {
     this.loginForm = {};
+    this.$state = $state;
     this.$auth = $auth;
     this.errors = [];
   }
@@ -24,14 +25,17 @@ class loginCtrl {
     var self = this;
     this.$auth.submitLogin(loginForm)
       .then(function(response) {
-        console.log('Success login!');
+        self.$state.go('main');
       })
       .catch(function(response) {
-        self.errors = response.errors;
-        console.log('Login failed!!! ' + response.errors);
+        if (response.reason === 'unauthorized') {
+          self.errors = ['Incorrect login or(and) password'];
+        } else {
+          self.errors = response.errors;
+        }
+        console.log(response);
       });
   }
-
 }
 
-loginCtrl.$inject = ['$auth'];
+LoginCtrl.$inject = ['$auth', '$state'];

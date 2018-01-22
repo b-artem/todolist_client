@@ -14,20 +14,31 @@ export default function() {
 }
 
 class SignupCtrl {
-  constructor($auth) {
+  constructor($auth, Flash, $state) {
     this.signupForm = {};
     this.$auth = $auth;
+    this.flash = Flash;
+    this.$state = $state;
+    this.errors = [];
   }
 
   submitSignup(signupForm) {
+    var self = this;
     this.$auth.submitRegistration(signupForm)
-      .then(function(success) {
-        console.log('Success sign up!');
+      .then(function() {
+        self.errors = [];
+        self.showSuccessMessage();
+        setTimeout(function() { self.$state.go('main') }, 2000);
       })
-      .catch(function(error) {
-        console.log('Sign up failed!');
+      .catch(function(response) {
+        self.errors = response.data.errors.full_messages;
       });
+  }
+
+  showSuccessMessage() {
+    var message = "<strong>Well done!</strong> You have successfully registered.";
+    this.flash.create('success', message, 3000, { class: 'pb-10 mb-20' });
   }
 }
 
-SignupCtrl.$inject = ['$auth'];
+SignupCtrl.$inject = ['$auth', 'Flash', '$state'];

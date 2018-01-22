@@ -1,13 +1,18 @@
 <div class="row">
   <div class="col-sm-8 sm-offset-2 md-6 md-offset-3">
     <h2>Sign Up</h2>
-    <div class="alert alert-success mb-10">
+    <!-- <div class="alert alert-success mb-10">
       <p class="mb-5"><strong>Well done!</strong> You have successfully registered.</p>
+    </div> -->
+
+    <!-- <div class="alert alert-danger">
+      <p class="mb-5">Incorrect login or(and) password.</p>
+    </div> -->
+    <div class="alert alert-danger">
+      <div class="mb-5" ng-repeat="error in $ctrl.errors">{{ error }}</div>
     </div>
 
-    <div class="alert alert-danger">
-      <p class="mb-5">Incorrect login or(and) password.</p>
-    </div>
+    <flash-message></flash-message>
 
     <form name="signupForm" novalidate
           ng-submit="signupForm.$valid && $ctrl.submitSignup($ctrl.signupForm)">
@@ -16,24 +21,17 @@
         <input type="email" ng-model="$ctrl.signupForm.email" class="form-control"
                placeholder="Email" required />
       </div>
-
       <div class="form-group mb-20">
         <input type="password" ng-model="$ctrl.signupForm.password" class="form-control"
                placeholder="Password" required />
       </div>
-
       <div class="form-group mb-20">
         <input type="password" ng-model="$ctrl.signupForm.password_confirmation"
                placeholder="Confirm Password" class="form-control" required />
       </div>
-
       <button type="submit" ng-disabled="!signupForm.$valid" class="btn btn-primary mb-15 mr-15 ">Sign Up</button>
-
-      <p>Already a member? <a href="/sign_in">Sign In</a></p>
+      <p>Already a member? <a ui-sref="login">Sign In</a></p>
     </form>
-
-    {{ $ctrl.signupForm }}<br>
-    signup form valid? - {{ signupForm.$valid }}
 
   </div>
 </div>

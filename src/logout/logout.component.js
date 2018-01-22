@@ -9,24 +9,26 @@ import template from './logout.template.html';
 export default function() {
   return {
     templateUrl: template,
-    controller: logoutCtrl
+    controller: LogoutCtrl
   }
 }
 
-class logoutCtrl {
-  constructor($auth) {
+class LogoutCtrl {
+  constructor($auth, $state) {
     this.$auth = $auth;
+    this.$state = $state;
   }
 
   logout() {
+    var self = this;
     this.$auth.signOut()
-      .then(function(success) {
-        console.log('Success logout!');
+      .then(function(response) {
+        self.$state.go('login');
       })
-      .catch(function(error) {
-        console.log('Logout failed!');
+      .catch(function(response) {
+        console.log(response.data.errors);
       });
   }
 }
 
-logoutCtrl.$inject = ['$auth'];
+LogoutCtrl.$inject = ['$auth', '$state'];

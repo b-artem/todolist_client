@@ -9,55 +9,25 @@ import uiRouter from '@uirouter/angularjs/release/angular-ui-router';
 
 import projectService from 'core/project/project.module';
 
-config.$inject = ['$authProvider', '$stateProvider'];
+config.$inject = ['$authProvider', '$stateProvider', '$urlRouterProvider'];
 
-export default function config($authProvider, $stateProvider) {
+export default function config($authProvider, $stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.when('', '/projects');
+  $urlRouterProvider.otherwise('/projects');
 
   var mainState = {
     name: 'main',
     url: '/projects',
     component: 'projectList',
     resolve: {
-      projects: ['Project', function(Project) {
-        return Project.query();
+      projects: ['Project', '$state', function(Project, $state) {
+        return Project.query(function() {
+        }, function(response) {
+          if (response.status === 401) { $state.go('login'); };
+        });
       }]
-      // activeProjectId: ['$stateParams', function($stateParams) {
-      //   return parseInt($stateParams.projectId);
-      // }]
     }
   }
-
-  // var projectState = {
-  //   name: 'main.tasks',
-  //   url: '/{projectId}/tasks',
-  //   component: 'project',
-  //   resolve: {
-      // project: ['Project', '$stateParams', function(Project, $stateParams) {
-      //   return Project.get({ id: $stateParams.projectId });
-      // }]
-
-      // projectId: ['$stateParams', function($stateParams) {
-      //   return parseInt($stateParams.projectId);
-      // }],
-
-      // project: ['projects', '$stateParams', function(projects, $stateParams) {
-      //   return projects.find(function(project) {
-      //     return project.id === parseInt($stateParams.projectId);
-      //   })
-      // }]
-
-      // activeProjectId: ['$stateParams', function($stateParams) {
-      //   console.log(parseInt($stateParams.projectId));
-      //   return parseInt($stateParams.projectId);
-      // }]
-
-      // project: function(projects, $stateParams) {
-      //   return projects.find(function(project) {
-      //     return project.id == $stateParams.projectId;
-      //   });
-      // }
-  //   }
-  // }
 
   var loginState = {
     name: 'login',
@@ -71,30 +41,11 @@ export default function config($authProvider, $stateProvider) {
     component: 'signup'
   }
 
-
   $authProvider.configure({
     apiUrl: apiUrl
-    // validateOnPageLoad: false
   });
-
-  // $locationProvider.hashPrefix('!');
-  // $locationProvider.html5Mode(true);
 
   $stateProvider.state(mainState);
   $stateProvider.state(loginState);
   $stateProvider.state(signupState);
-  // $stateProvider.state(projectState)
-
-  // $routeProvider.
-  //   when('/', {
-  //     // template: '<login></login>'
-  //     template: '<project-list></project-list>'
-  //   }).
-  //   when('/sign_up', {
-  //     template: '<signup></signup>'
-  //   }).
-  //   when('/sign_in', {
-  //     template: '<login></login>'
-  //   }).
-  //   otherwise('/');
 }

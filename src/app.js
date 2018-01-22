@@ -5,7 +5,6 @@ import uiRouter from '@uirouter/angularjs/release/angular-ui-router';
 import ngTokenAuth from 'ng-token-auth';
 import ngCookie from 'angular-cookie';
 
-
 import logo from './images/logo.svg';
 import './scss/application.scss';
 
@@ -26,10 +25,6 @@ const app = angular.module('todoList', [
   signup,
   login,
   logout
-  // 'ngAnimate',
-  // 'core',
-  // 'phoneDetail',
-  // 'phoneList'
 ])
 .config(config);
 

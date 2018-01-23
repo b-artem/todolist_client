@@ -1,7 +1,7 @@
 'use strict';
 
 import angular from 'angular';
-// import uibModal from 'angular-ui-bootstrap/src/modal';
+import uibModal from 'angular-ui-bootstrap/src/modal';
 
 import template from './modal.template.html';
 
@@ -18,9 +18,6 @@ export default function() {
 }
 
 class ModalCtrl {
-  constructor() {
-  }
-
   $onInit() {
     this.headerText = this.resolve.headerText;
     this.mainText = this.resolve.mainText;
@@ -34,5 +31,3 @@ class ModalCtrl {
     this.dismiss({ $value: false });
   }
 }
-
-// ModalCtrl.$inject = ['$uibModal'];

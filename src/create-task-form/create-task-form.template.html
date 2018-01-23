@@ -1,9 +1,12 @@
+<div class="alert alert-danger" ng-show="$ctrl.errors.length > 0">
+  <div class="mb-5" ng-repeat="error in $ctrl.errors">{{ error }}</div>
+</div>
+
 <form name="$ctrl.createTaskForm" novalidate
     ng-submit="$ctrl.createTaskForm.$valid && $ctrl.submitCreate()">
-    <input ng-model="$ctrl.taskName" type="text" class="project-task-edit-field form-control"
-      placeholder="Enter Task Name..."
-      ng-focus="$ctrl.state.showButtons = true" required />
-  <!-- <div class="divider" /> -->
+  <input ng-model="$ctrl.taskName" type="text" class="project-task-edit-field form-control"
+    placeholder="Enter Task Name..."
+    ng-focus="$ctrl.state.showButtons = true" required />
   <div class="project-task-edit-btn" ng-show="$ctrl.state.showButtons">
     <button type="submit" ng-disabled="!$ctrl.createTaskForm.$valid" class="btn btn-info mb-5 mr-15 ">
       Add Task
@@ -13,6 +16,3 @@
     </button>
   </div>
 </form>
-
-<!-- form valid? - {{ $ctrl.createTaskForm.$valid }}<br>
-{{ $ctrl.taskName }} -->

@@ -24,15 +24,13 @@ class SignupCtrl {
 
   submitSignup(signupForm) {
     var self = this;
-    this.$auth.submitRegistration(signupForm)
-      .then(function() {
-        self.errors = [];
-        self.showSuccessMessage();
-        setTimeout(function() { self.$state.go('main') }, 2000);
-      })
-      .catch(function(response) {
-        self.errors = response.data.errors.full_messages;
-      });
+    this.$auth.submitRegistration(signupForm).then(function() {
+      self.errors = [];
+      self.showSuccessMessage();
+      setTimeout(function() { self.$state.go('main') }, 2000);
+    }).catch(function(response) {
+      self.errors = response.data.errors.full_messages;
+    });
   }
 
   showSuccessMessage() {

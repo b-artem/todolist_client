@@ -19,6 +19,7 @@ export default function() {
 class ProjectCtrl {
   constructor($uibModal) {
     this.$uibModal = $uibModal;
+    this.errors = [];
     this.state = {
       open: false,
       edit: false,
@@ -28,7 +29,6 @@ class ProjectCtrl {
 
   $onInit() {
     this.initialName = this.project.name;
-    // this.currentTasks = this.project.tasks;
     this.checkAllDone(this.project.tasks);
   }
 
@@ -51,15 +51,17 @@ class ProjectCtrl {
   submitEdit() {
     var self = this;
     this.project.$update(function() {
+      self.errors = [];
       self.initialName = self.project.name;
       self.resetForm();
     }, function(response) {
       self.project.name = self.initialName;
-      console.log(response.data.error);
+      self.errors = response.data;
     });
   }
 
   resetForm() {
+    this.errors = [];
     this.editProjectForm.$setPristine();
     this.state.edit = false;
   }
@@ -73,9 +75,10 @@ class ProjectCtrl {
     var self = this;
     this.deleteModal().result.then(function() {
       self.project.$delete(function() {
+        self.errors = [];
         self.onDelete(self.project);
       }, function(response) {
-        console.log(response.data.error);
+        self.errors = response.data;
       });
       }, function () {
     });

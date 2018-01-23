@@ -2,7 +2,7 @@
 
 import angular from 'angular';
 
-import projectCore from 'core/project/project.module';
+import projectService from 'core/project/project.module';
 import template from './create-project-form.template.html';
 
 export default function() {
@@ -19,6 +19,7 @@ class CreateProjectFormCtrl {
   constructor(Project) {
     this.projectService = Project;
     this.projectName = '';
+    this.errors = [];
     this.state = { showButtons: false };
   }
 
@@ -29,11 +30,12 @@ class CreateProjectFormCtrl {
       self.resetForm();
       self.onCreate({ project: project });
     }, function(response) {
-      console.log(response.data.errors.name);
+      self.errors = response.data;
     });
   }
 
   resetForm() {
+    this.errors = [];
     this.projectName = '';
     this.createProjectForm.$setPristine();
     this.state = { showButtons: false };

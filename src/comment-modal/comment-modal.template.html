@@ -1,7 +1,7 @@
 <div class="modal-header">
   <h3 class="modal-title in-black">{{ $ctrl.headerText }}</h3>
-  <!-- <span class="close pull-right">&times;</span> -->
 </div>
+
 <div class="modal-body pb-5">
   <form name="createCommentForm" novalidate>
     <!-- ng-submit="createCommentForm.$valid && $ctrl.submitCreate()"> -->
@@ -26,20 +26,18 @@
     </div>
   </form>
 </div>
+
 <div class="modal-footer">
-  <!-- <div class="pb-5"> -->
-    <!-- <div class="divider" /> -->
-    <div ng-repeat="comment in $ctrl.comments | orderBy:$ctrl.orderProp" class="pt-15 pr-15 pb-5 pl-15">
-      <div class="text-left">
-        <span class="mr-15 in-grey-500">{{ $ctrl.formatDate(comment.created_at) }}</span>
-        <span class="glyphicon glyphicon-trash" ng-click="$ctrl.deleteComment(comment)"></span>
-      </div>
-      <p class="mb-5">{{ comment.text }}</p>
-      <a href="{{ comment.attachment.url }}" ng-show="comment.attachment.url">
-        <img class="attachment" ng-show="comment.attachment.preview.url"
-             ng-src="{{ comment.attachment.preview.url || '#' }}"
-             height="200" alt="attachment image">
-      </a>
+  <div ng-repeat="comment in $ctrl.comments | orderBy:$ctrl.orderProp" class="pt-15 pr-15 pb-5 pl-15">
+    <div class="text-left">
+      <span class="mr-15 in-grey-500">{{ $ctrl.formatDate(comment.created_at) }}</span>
+      <span class="glyphicon glyphicon-trash" ng-click="$ctrl.deleteComment(comment)"></span>
     </div>
-  <!-- </div> -->
+    <p class="mb-5">{{ comment.text }}</p>
+    <a href="{{ comment.attachment.url }}" ng-show="comment.attachment.url" target="_blank">
+      <img class="attachment" ng-show="comment.attachment.preview.url"
+           ng-src="{{ comment.attachment.preview.url || '#' }}"
+           height="200" alt="attachment image">
+    </a>
+  </div>
 </div>

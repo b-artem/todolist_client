@@ -23,18 +23,15 @@ class LoginCtrl {
 
   submitLogin(loginForm) {
     var self = this;
-    this.$auth.submitLogin(loginForm)
-      .then(function(response) {
-        self.$state.go('main');
-      })
-      .catch(function(response) {
-        if (response.reason === 'unauthorized') {
-          self.errors = ['Incorrect login or(and) password'];
-        } else {
-          self.errors = response.errors;
-        }
-        console.log(response);
-      });
+    this.$auth.submitLogin(loginForm).then(function(response) {
+      self.$state.go('main');
+    }).catch(function(response) {
+      if (response.reason === 'unauthorized') {
+        self.errors = ['Incorrect login or(and) password'];
+      } else {
+        self.errors = response.errors;
+      }
+    });
   }
 }
 

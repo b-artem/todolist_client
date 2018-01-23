@@ -14,6 +14,9 @@ config.$inject = ['$authProvider', '$stateProvider', '$urlRouterProvider'];
 export default function config($authProvider, $stateProvider, $urlRouterProvider) {
   $urlRouterProvider.when('', '/projects');
   $urlRouterProvider.otherwise('/projects');
+  $authProvider.configure({
+    apiUrl: apiUrl
+  });
 
   var mainState = {
     name: 'main',
@@ -40,10 +43,6 @@ export default function config($authProvider, $stateProvider, $urlRouterProvider
     url: '/sign_up',
     component: 'signup'
   }
-
-  $authProvider.configure({
-    apiUrl: apiUrl
-  });
 
   $stateProvider.state(mainState);
   $stateProvider.state(loginState);

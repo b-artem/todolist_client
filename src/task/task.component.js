@@ -22,6 +22,7 @@ class TaskCtrl {
   constructor(Task, $uibModal) {
     this.taskService = Task;
     this.$uibModal = $uibModal;
+    this.errors = [];
     this.state = {
       edit: false,
       urgent: false
@@ -43,7 +44,7 @@ class TaskCtrl {
     this.task.$update(function() {
       self.onToggleDone();
     }, function(response) {
-      console.log(response.data.error);
+      console.log(response.data);
     })
   }
 
@@ -54,11 +55,12 @@ class TaskCtrl {
       self.resetForm();
     }, function(response) {
       self.task.name = self.initialName;
-      console.log(response.data);
+      self.errors = response.data;
     });
   }
 
   resetForm() {
+    this.errors = [];
     this.editTaskForm.$setPristine();
     this.state.edit = false;
   }
@@ -74,7 +76,7 @@ class TaskCtrl {
       self.task.$delete(function() {
         self.onDelete(self.task);
       }, function(response) {
-        console.log(response.data.error);
+        self.errors = response.data;
       });
     }, function () {
     });
@@ -96,9 +98,10 @@ class TaskCtrl {
     this.deadlineModal(this.task.deadline).result.then(function(newDeadline) {
       self.task.deadline = newDeadline;
       self.task.$update(function() {
+        self.errors = [];
         self.setUrgency();
       }, function(response) {
-        console.log(response.data.error);
+        self.errors = response.data;
       });
       }, function() {
     });

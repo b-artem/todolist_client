@@ -19,8 +19,8 @@ export default function() {
 
 class TaskListCtrl {
   constructor(Task) {
-    this.orderProp = 'priority';
     this.taskService = Task;
+    this.orderProp = 'priority';
   }
 
   createTask(task) {

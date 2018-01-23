@@ -1,3 +1,7 @@
+<div class="alert alert-danger" ng-show="$ctrl.errors.length > 0">
+  <div class="mb-5" ng-repeat="error in $ctrl.errors">{{ error }}</div>
+</div>
+
 <div class="project-task-edit" ng-show="$ctrl.state.edit">
   <form name="$ctrl.editTaskForm" novalidate
     ng-submit="$ctrl.editTaskForm.$valid && $ctrl.submitEdit()">

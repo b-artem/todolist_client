@@ -4,6 +4,10 @@
 
 <div class="project" ng-class="{ edit:$ctrl.state.edit }">
 
+  <div class="alert alert-danger" ng-show="$ctrl.errors.length > 0">
+    <div class="mb-5" ng-repeat="error in $ctrl.errors">{{ error }}</div>
+  </div>
+
   <div class="project-edit">
     <form name="$ctrl.editProjectForm" novalidate
       ng-submit="$ctrl.editProjectForm.$valid && $ctrl.submitEdit()">
@@ -18,7 +22,6 @@
   <div class="project-info" ng-class="{ open:$ctrl.state.open }">
     <div class="project-info__header">
       <p class="project-info__title" ng-click="$ctrl.toggleOpen()">
-      <!-- <p class="project-info__title" ng-click="$ctrl.toggle()" ui-sref="main.project({ projectId: project.id })" ui-sref-active="active"> -->
         <span class="project-info__title-icon icon icon-arrow-up" />
         {{ $ctrl.project.name }}
       </p>
@@ -34,7 +37,5 @@
       <task-list tasks="$ctrl.project.tasks" project-id="$ctrl.project.id" on-update="$ctrl.checkAllDone(tasks)"></task-list>
     </div>
   </div>
-</div>
 
-<!-- <CreateForm /> -->
 </div>

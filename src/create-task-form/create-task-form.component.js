@@ -2,13 +2,13 @@
 
 import angular from 'angular';
 
-import taskCore from 'core/task/task.module';
+import taskService from 'core/task/task.module';
 import template from './create-task-form.template.html';
 
 export default function() {
   return {
     templateUrl: template,
-    controller: createTaskFormCtrl,
+    controller: CreateTaskFormCtrl,
     bindings: {
       projectId: '<',
       onCreate: '&'
@@ -16,10 +16,11 @@ export default function() {
   }
 }
 
-class createTaskFormCtrl {
+class CreateTaskFormCtrl {
   constructor(Task) {
     this.taskService = Task;
     this.taskName = '';
+    this.errors = [];
     this.state = { showButtons: false };
   }
 
@@ -30,15 +31,16 @@ class createTaskFormCtrl {
       self.resetForm();
       self.onCreate({ task: task });
     }, function(response) {
-      console.log(response.data.errors.name);
+      self.errors = response.data;
     });
   }
 
   resetForm() {
+    this.errors = [];
     this.taskName = '';
     this.createTaskForm.$setPristine();
     this.state = { showButtons: false };
   }
 }
 
-createTaskFormCtrl.$inject = ['Task'];
+CreateTaskFormCtrl.$inject = ['Task'];

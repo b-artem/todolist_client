@@ -24,8 +24,8 @@ label, .label {
 }
 
 .ng-invalid.ng-dirty {
-border-color: $form-control-error-color;
+  border-color: $form-control-error-color;
 }
 .ng-valid.ng-dirty {
-border-color: #78FA89;
+  border-color: #78FA89;
 }

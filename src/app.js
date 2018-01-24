@@ -24,12 +24,3 @@ const app = angular.module('todoList', [
   logout
 ])
 .config(config);
-
-
-// app.$inject = ['$rootScopeProvider'];
-//
-// app.run(function($rootScope) {
-//   $rootScope.$on('auth:login-success', function(ev, user) {
-//     alert('Welcome ' + user.email);
-//   });
-// });

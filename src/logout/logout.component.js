@@ -29,6 +29,10 @@ class LogoutCtrl {
         console.log(response.data.errors);
       });
   }
+
+  visible() {
+    return this.$state.current.name === 'main';
+  }
 }
 
 LogoutCtrl.$inject = ['$auth', '$state'];

@@ -20,8 +20,9 @@ class DeadlineModalCtrl {
   constructor() {
     this.popupDate = { opened: false };
     this.dateOptions = {
+      popupPlacement: 'right',
       startingDay: 1,
-      formatYear: 'yy',
+      formatYear: 'yyyy',
       maxDate: new Date(2050, 12, 31),
       minDate: new Date(2017, 1, 1),
       showWeeks: false

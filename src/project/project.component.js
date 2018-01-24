@@ -51,7 +51,6 @@ class ProjectCtrl {
   submitEdit() {
     var self = this;
     this.project.$update(function() {
-      self.errors = [];
       self.initialName = self.project.name;
       self.resetForm();
     }, function(response) {

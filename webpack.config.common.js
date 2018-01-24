@@ -5,10 +5,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   entry: {
     app: './src/app.js'
-    // vendor: [
-    //   'react',
-    //   'react-dom'
-    // ]
   },
 
   resolve: {

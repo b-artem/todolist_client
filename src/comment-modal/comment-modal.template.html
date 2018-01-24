@@ -4,12 +4,10 @@
 
 <div class="modal-body pb-5">
   <form name="createCommentForm" novalidate>
-    <!-- ng-submit="createCommentForm.$valid && $ctrl.submitCreate()"> -->
     <textarea name="comment" ng-model="$ctrl.commentData.text" rows="4" cols="40"
       class="form-control mb-15" placeholder="Enter Your Comment" required>
     </textarea>
     <div class="text-right mb-15">
-      <!-- <span>Attach</span> -->
       <i ng-show="createCommentForm.file.$error.maxSize">File too large
           {{errorFile.size / 1000000|number:1}}MB: max 10M</i>
       <div class="button mb-15" name="file" ngf-select ng-model="$ctrl.commentData.attachment"
@@ -28,16 +26,21 @@
 </div>
 
 <div class="modal-footer">
-  <div ng-repeat="comment in $ctrl.comments | orderBy:$ctrl.orderProp" class="pt-15 pr-15 pb-5 pl-15">
-    <div class="text-left">
-      <span class="mr-15 in-grey-500">{{ $ctrl.formatDate(comment.created_at) }}</span>
-      <span class="glyphicon glyphicon-trash" ng-click="$ctrl.deleteComment(comment)"></span>
+  <div ng-repeat="comment in $ctrl.comments | orderBy:$ctrl.orderProp"
+       class="comments pt-15 pr-15 pb-5 pl-15">
+    <div>
+      <span class="date mr-15 in-grey-500">{{ $ctrl.formatDate(comment.created_at) }}</span>
+      <span class="pt-4 glyphicon glyphicon-trash" ng-click="$ctrl.deleteComment(comment)"></span>
     </div>
-    <p class="mb-5">{{ comment.text }}</p>
-    <a href="{{ comment.attachment.url }}" ng-show="comment.attachment.url" target="_blank">
-      <img class="attachment" ng-show="comment.attachment.preview.url"
-           ng-src="{{ comment.attachment.preview.url || '#' }}"
-           height="200" alt="attachment image">
-    </a>
+    <div>
+      <p class="mb-5">{{ comment.text }}</p>
+    </div>
+    <div>
+      <a href="{{ comment.attachment.url }}" ng-show="comment.attachment.url" target="_blank">
+        <img class="attachment" ng-show="comment.attachment.preview.url"
+        ng-src="{{ comment.attachment.preview.url || '#' }}"
+        height="200" alt="attachment image">
+      </a>
+    </div>
   </div>
 </div>

@@ -69,7 +69,7 @@ class CommentsCtrl {
     newComment.$save(function(comment) {
       self.comments.push(comment);
     }, function(response) {
-      console.log(response.data.error);
+      console.log(response.data);
     });
   }
 

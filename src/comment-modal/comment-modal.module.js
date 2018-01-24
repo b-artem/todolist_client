@@ -7,6 +7,7 @@ import ngFileUpload from 'ng-file-upload';
 import commentModalComponent from './comment-modal.component';
 import commentService from 'core/comment/comment.module';
 
-export default angular.module('todoList.commentModal', [uibModal, commentService, ngFileUpload]).
+export default angular.module('todoList.commentModal',
+  [uibModal, ngFileUpload, commentService]).
   component('commentModal', commentModalComponent()).
   name;

@@ -1,7 +1,7 @@
 <div id="projects" class="row">
-  <h2>Projects</h2>
 
-  <div class="col-sm-8 sm-offset-2">
+  <div class="col-sm-8 col-sm-offset-2">
+    <h2>Projects</h2>
     <project ng-repeat="project in $ctrl.projects | orderBy:$ctrl.orderProp"
              project="project" on-delete="$ctrl.deleteProject(project)"></project>
     <create-project-form on-create="$ctrl.createProject(project)"></create-project-form>

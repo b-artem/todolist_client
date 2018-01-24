@@ -1,7 +1,7 @@
 'use strict';
 
-export const apiUrl = 'http://localhost:3000/api/v1';
-export const apiUrl = 'http://localhost:3000/api/v1';
+export const apiUrl = 'https://todolist-api-artem.herokuapp.com/api/v1';
+// export const apiUrl = 'http://localhost:3000/api/v1';
 
 import angular from 'angular';
 import ngTokenAuth from 'ng-token-auth';

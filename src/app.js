@@ -2,7 +2,6 @@
 
 import angular from 'angular';
 import uiRouter from '@uirouter/angularjs/release/angular-ui-router';
-import ngTokenAuth from 'ng-token-auth';
 import ngCookie from 'angular-cookie';
 
 import logo from './images/logo.svg';
@@ -16,7 +15,6 @@ import logout from './logout/logout.module';
 
 const app = angular.module('todoList', [
   uiRouter,
-  ngTokenAuth,
   ngCookie,
   projectList,
   signup,

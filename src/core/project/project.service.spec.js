@@ -36,14 +36,14 @@ describe('Service Project', function() {
 
   it('creates a new project at `/projects`', function() {
     var newProject = { name: 'a new project' };
-    var updatedProject;
+    var createdProject;
     $httpBackend.expectPOST(apiUrl + '/projects', newProject).respond(newProject);
-    Project.save(newProject, function(savedPrj) {
-      updatedProject = savedPrj;
+    Project.save(newProject, function(createdPrj) {
+      createdProject = createdPrj;
     });
-    expect(updatedProject).toBeUndefined();
+    expect(createdProject).toBeUndefined();
     $httpBackend.flush();
-    expect(updatedProject).toEqual(newProject);
+    expect(createdProject).toEqual(newProject);
   });
 
   it('updates the project at `/projects/:id`', function() {
@@ -62,8 +62,8 @@ describe('Service Project', function() {
     var projectToDelete = { name: 'Project to delete', id: 2 };
     var deletedProject;
     $httpBackend.expectDELETE(apiUrl + '/projects/2').respond(projectToDelete);
-    Project.delete({ id: 2 }, function(delPrj) {
-      deletedProject = delPrj;
+    Project.delete({ id: 2 }, function(deletedPrj) {
+      deletedProject = deletedPrj;
     });
     expect(deletedProject).toBeUndefined();
     $httpBackend.flush();

@@ -55,14 +55,25 @@ describe('Component project', function() {
       expect(ctrl.state.edit).toBe(false);
     });
 
-    it('resets the form', function() {
-      var editTaskForm = jasmine.createSpyObj('editTaskForm', ['$setPristine']);
-      ctrl.editTaskForm = editTaskForm;
-      ctrl.errors = ['some error'];
-      ctrl.state.edit = true;
-      ctrl.resetForm();
-      expect(ctrl.errors).toEqual([]);
-      expect(ctrl.state.edit).toBe(false);
+    describe('resetForm()', function() {
+      beforeEach(function() {
+        var editTaskForm = jasmine.createSpyObj('editTaskForm', ['$setPristine']);
+        ctrl.editTaskForm = editTaskForm;
+      });
+
+      it('resets the corresponding variables', function() {
+        ctrl.errors = ['some error'];
+        ctrl.state.edit = true;
+        ctrl.resetForm();
+        expect(ctrl.errors).toEqual([]);
+        expect(ctrl.state.edit).toBe(false);
+      });
+
+      it('resets the form', function(){
+        expect(ctrl.editTaskForm.$setPristine.calls.count()).toEqual(0);
+        ctrl.resetForm();
+        expect(ctrl.editTaskForm.$setPristine.calls.count()).toEqual(1);
+      });
     });
 
     it('cancels `edit` state', function() {

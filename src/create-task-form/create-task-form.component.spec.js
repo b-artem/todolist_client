@@ -47,6 +47,7 @@ describe('Component createTaskForm', function() {
         ctrl.errors = ['some error'];
         ctrl.taskName = 'a new name';
         ctrl.state.showButtons = true;
+
         ctrl.resetForm();
         expect(ctrl.errors).toEqual([]);
         expect(ctrl.taskName).toBe('');

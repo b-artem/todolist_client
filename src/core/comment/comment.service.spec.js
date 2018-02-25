@@ -41,9 +41,11 @@ describe('Service Comment', function() {
     var createdComment;
     $httpBackend.expectPOST(apiUrl + '/projects/2/tasks/4/comments', newComment)
       .respond(newComment);
+
     Comment.save(newComment, function(createdCom) {
       createdComment = createdCom;
     });
+
     expect(createdComment).toBeUndefined();
     $httpBackend.flush();
     expect(createdComment).toEqual(newComment);
@@ -55,9 +57,11 @@ describe('Service Comment', function() {
     var deletedComment;
     $httpBackend.expectDELETE(apiUrl + '/projects/3/tasks/5/comments/8')
       .respond(commentToDelete);
+
     Comment.delete({ project_id: 3, task_id: 5, id: 8 }, function(deletedCom) {
       deletedComment = deletedCom;
     });
+    
     expect(deletedComment).toBeUndefined();
     $httpBackend.flush();
     expect(deletedComment).toEqual(commentToDelete);

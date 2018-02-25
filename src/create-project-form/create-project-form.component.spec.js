@@ -43,6 +43,7 @@ describe('Component createProjectForm', function() {
         ctrl.errors = ['some error'];
         ctrl.projectName = 'a new name';
         ctrl.state.showButtons = true;
+
         ctrl.resetForm();
         expect(ctrl.errors).toEqual([]);
         expect(ctrl.projectName).toBe('');

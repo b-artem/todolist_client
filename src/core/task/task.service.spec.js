@@ -38,9 +38,11 @@ describe('Service Task', function() {
     var newTask = { name: 'a new task', project_id: 2 };
     var createdTask;
     $httpBackend.expectPOST(apiUrl + '/projects/2/tasks', newTask).respond(newTask);
+
     Task.save(newTask, function(createdTsk) {
       createdTask = createdTsk;
     });
+
     expect(createdTask).toBeUndefined();
     $httpBackend.flush();
     expect(createdTask).toEqual(newTask);
@@ -51,9 +53,11 @@ describe('Service Task', function() {
     var updatedTask;
     $httpBackend.expect('PATCH', apiUrl + '/projects/1/tasks/3', taskToUpdate)
       .respond(taskToUpdate);
+
     Task.update(taskToUpdate, function(updatedTsk) {
       updatedTask = updatedTsk;
     });
+
     expect(updatedTask).toBeUndefined();
     $httpBackend.flush();
     expect(updatedTask).toEqual(taskToUpdate);
@@ -63,9 +67,11 @@ describe('Service Task', function() {
     var taskToDelete = { name: 'Task to delete', id: 2, project_id: 3 };
     var deletedTask;
     $httpBackend.expectDELETE(apiUrl + '/projects/3/tasks/2').respond(taskToDelete);
+
     Task.delete({ project_id: 3, id: 2 }, function(deletedTsk) {
       deletedTask = deletedTsk;
     });
+    
     expect(deletedTask).toBeUndefined();
     $httpBackend.flush();
     expect(deletedTask).toEqual(taskToDelete);

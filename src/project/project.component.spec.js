@@ -84,6 +84,7 @@ describe('Component project', function() {
       ctrl.editProjectForm = editProjectForm;
       ctrl.project.name = 'Edited name';
       spyOn(ctrl, 'resetForm');
+
       ctrl.cancelEdit();
       expect(ctrl.project.name).toEqual(bindings.project.name);
       expect(ctrl.resetForm.calls.count()).toEqual(1);

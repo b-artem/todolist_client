@@ -38,9 +38,11 @@ describe('Service Project', function() {
     var newProject = { name: 'a new project' };
     var createdProject;
     $httpBackend.expectPOST(apiUrl + '/projects', newProject).respond(newProject);
+
     Project.save(newProject, function(createdPrj) {
       createdProject = createdPrj;
     });
+    
     expect(createdProject).toBeUndefined();
     $httpBackend.flush();
     expect(createdProject).toEqual(newProject);
@@ -50,9 +52,11 @@ describe('Service Project', function() {
     var projectToUpdate = { name: 'updated project', id: 3 };
     var updatedProject;
     $httpBackend.expect('PATCH', apiUrl + '/projects/3', projectToUpdate).respond(projectToUpdate);
+
     Project.update(projectToUpdate, function(updatedPrj) {
       updatedProject = updatedPrj;
     });
+
     expect(updatedProject).toBeUndefined();
     $httpBackend.flush();
     expect(updatedProject).toEqual(projectToUpdate);
@@ -62,9 +66,11 @@ describe('Service Project', function() {
     var projectToDelete = { name: 'Project to delete', id: 2 };
     var deletedProject;
     $httpBackend.expectDELETE(apiUrl + '/projects/2').respond(projectToDelete);
+
     Project.delete({ id: 2 }, function(deletedPrj) {
       deletedProject = deletedPrj;
     });
+
     expect(deletedProject).toBeUndefined();
     $httpBackend.flush();
     expect(deletedProject).toEqual(projectToDelete);

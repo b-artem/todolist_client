@@ -82,15 +82,19 @@ describe('Component project', function() {
       ctrl.task.name = 'Edited name';
       spyOn(ctrl, 'resetForm');
       expect(ctrl.resetForm.calls.count()).toEqual(0);
+
       ctrl.cancelEdit();
       expect(ctrl.task.name).toEqual(bindings.task.name);
       expect(ctrl.resetForm.calls.count()).toEqual(1);
     });
 
-    it('sets urgency', function() {
+    it('sets urgency to `true` when a deadline is today or earlier', function() {
       ctrl.task.deadline = '2018-01-25T10:00:23.021Z';
       ctrl.setUrgency();
       expect(ctrl.state.urgent).toBe(true);
+    });
+
+    it('sets urgency to `false` when a deadline is tomorrow or after', function() {
       ctrl.task.deadline = '2038-01-25T10:00:23.021Z';
       ctrl.setUrgency();
       expect(ctrl.state.urgent).toBe(false);

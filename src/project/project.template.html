@@ -1,0 +1,41 @@
+<div class="alert alert-success mb-0" ng-show="$ctrl.state.allDone">
+  <p class="mb-5"><b>Well done!</b> You have successfully done all tasks.</p>
+</div>
+
+<div class="project" ng-class="{ edit:$ctrl.state.edit }">
+
+  <div class="alert alert-danger" ng-show="$ctrl.errors.length > 0">
+    <div class="mb-5" ng-repeat="error in $ctrl.errors">{{ error }}</div>
+  </div>
+
+  <div class="project-edit">
+    <form name="$ctrl.editProjectForm" novalidate
+      ng-submit="$ctrl.editProjectForm.$valid && $ctrl.submitEdit()">
+      <div class="form-group mb-20">
+        <input ng-model="$ctrl.project.name" type="text" class="form-control" required />
+      </div>
+      <button type="submit" ng-disabled="!$ctrl.editProjectForm.$valid || $ctrl.editProjectForm.$pristine" class="btn btn-primary mb-5 mr-5">Save</button>
+      <button type="button" class="btn btn-default mb-5 mr-5" ng-click="$ctrl.cancelEdit()">Cancel</button>
+    </form>
+  </div>
+
+  <div class="project-info" ng-class="{ open:$ctrl.state.open }">
+    <div class="project-info__header">
+      <p class="project-info__title" ng-click="$ctrl.toggleOpen()">
+        <span class="project-info__title-icon icon icon-arrow-up" />
+        {{ $ctrl.project.name }}
+      </p>
+      <div class="project-info__actions">
+        <span class="glyphicon glyphicon-pencil align-middle d-inline-block mb-5 mr-5"
+          ng-click="$ctrl.toggleEdit()"></span>
+        <span class="glyphicon glyphicon-trash align-middle d-inline-block mb-5 mr-5"
+          ng-click="$ctrl.delete()"></span>
+      </div>
+    </div>
+
+    <div class="project-info__body" ng-show="$ctrl.state.open">
+      <task-list tasks="$ctrl.project.tasks" project-id="$ctrl.project.id" on-update="$ctrl.checkAllDone(tasks)"></task-list>
+    </div>
+  </div>
+
+</div>

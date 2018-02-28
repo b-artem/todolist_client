@@ -1,0 +1,44 @@
+<div class="alert alert-danger" ng-show="$ctrl.errors.length > 0">
+  <div class="mb-5" ng-repeat="error in $ctrl.errors">{{ error }}</div>
+</div>
+
+<div class="project-task-edit" ng-show="$ctrl.state.edit">
+  <form name="$ctrl.editTaskForm" novalidate
+    ng-submit="$ctrl.editTaskForm.$valid && $ctrl.submitEdit()">
+    <input ng-model="$ctrl.task.name" type="text" class="project-task-edit-field mb-10 form-control" required />
+    <div class="project-task-edit-btn">
+      <button type="submit" ng-disabled="!$ctrl.editTaskForm.$valid || $ctrl.editTaskForm.$pristine"
+              class="btn btn-info mb-15 mr-15">Save</button>
+      <button type="button" class="btn btn-default mb-15 mr-15" ng-click="$ctrl.cancelEdit()">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<div class="project-task" ng-hide="$ctrl.state.edit">
+  <div class="no-shrink pt-5">
+    <div class="align-middle flex-grow project-task-actions">
+      <span class="glyphicon glyphicon-arrow-up" ng-click="$ctrl.changePriority('up')"></span>
+    </div>
+    <div class="align-middle flex-grow project-task-actions">
+      <span class="glyphicon glyphicon-arrow-down" ng-click="$ctrl.changePriority('down')"></span>
+    </div>
+  </div>
+  <form class="flex-grow mb-0">
+    <label class="checkbox-inline">
+      <input type="checkbox" ng-model="$ctrl.task.done" ng-change="$ctrl.toggleDone()">
+      <span ng-class="{ done : $ctrl.task.done}">{{ $ctrl.task.name }}</span>
+      <div ng-class="{ 'in-red-500' : $ctrl.state.urgent, 'in-green-500' : !$ctrl.state.urgent,  }"
+           class="font-10">{{ $ctrl.getDate() + ' ' + $ctrl.getTime() }}</div>
+    </label>
+  </form>
+  <div class="no-shrink pt-5 project-task-actions">
+    <comments comments="$ctrl.task.comments" project-id="$ctrl.task.project_id"
+      task-id="$ctrl.task.id"></comments>
+    <span class="glyphicon glyphicon-time align-middle d-inline-block mb-5 mr-5"
+      ng-click="$ctrl.setDeadline()"></span>
+    <span class="glyphicon glyphicon-pencil align-middle d-inline-block mb-5 mr-5"
+      ng-click="$ctrl.toggleEdit()"></span>
+    <span class="glyphicon glyphicon-trash align-middle d-inline-block mb-5"
+      ng-click="$ctrl.delete()"></span>
+  </div>
+</div>

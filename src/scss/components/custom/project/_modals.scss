@@ -1,0 +1,36 @@
+textarea {
+  overflow-x: hidden;
+  resize: none;
+}
+.thumb {
+  width: 200px;
+}
+img.attachment {
+  max-height: 200px;
+}
+ul.uib-datepicker-popup {
+  padding-top: 15px;
+  padding-left: 0px;
+  list-style-type: none;
+}
+div.uib-datepicker {
+  width: 200px;
+  margin-right: 0;
+}
+input.date-input {
+  width: 220px;
+}
+td {
+  input.form-control {
+    margin-left: 30px;
+    margin-bottom: 10px;
+  }
+}
+div.comments {
+  div {
+    display: flex;
+  }
+  span.date {
+    font-size: 0.9em;
+  }
+}

@@ -1,0 +1,46 @@
+<div class="modal-header">
+  <h3 class="modal-title in-black">{{ $ctrl.headerText }}</h3>
+</div>
+
+<div class="modal-body pb-5">
+  <form name="createCommentForm" novalidate>
+    <textarea name="comment" ng-model="$ctrl.commentData.text" rows="4" cols="40"
+      class="form-control mb-15" placeholder="Enter Your Comment" required>
+    </textarea>
+    <div class="text-right mb-15">
+      <i ng-show="createCommentForm.file.$error.maxSize">File too large
+          {{errorFile.size / 1000000|number:1}}MB: max 10M</i>
+      <div class="button mb-15" name="file" ngf-select ng-model="$ctrl.commentData.attachment"
+        accept="image/jpg,image/jpeg,image/png" ngf-max-size="10MB">
+        <span class="glyphicon glyphicon-paperclip mr-5"></span>
+      </div>
+      <img ng-show="$ctrl.commentData.attachment" ngf-thumbnail="$ctrl.commentData.attachment"
+        class="thumb mb-15">
+    </div>
+    <div class="text-right">
+      <button ng-disabled="!createCommentForm.$valid"
+        class="btn btn-primary mb-15 mr-15" ng-click="$ctrl.ok()">Save</button>
+      <button class="btn btn-default mb-15" ng-click="$ctrl.cancel()">Cancel</button>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <div ng-repeat="comment in $ctrl.comments | orderBy:$ctrl.orderProp"
+       class="comments pt-15 pr-15 pb-5 pl-15">
+    <div>
+      <span class="date mr-15 in-grey-500">{{ $ctrl.formatDate(comment.created_at) }}</span>
+      <span class="pt-4 glyphicon glyphicon-trash" ng-click="$ctrl.deleteComment(comment)"></span>
+    </div>
+    <div>
+      <p class="mb-5">{{ comment.text }}</p>
+    </div>
+    <div>
+      <a href="{{ comment.attachment.url }}" ng-show="comment.attachment.url" target="_blank">
+        <img class="attachment" ng-show="comment.attachment.preview.url"
+        ng-src="{{ comment.attachment.preview.url || '#' }}"
+        height="200" alt="attachment image">
+      </a>
+    </div>
+  </div>
+</div>

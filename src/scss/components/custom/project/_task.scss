@@ -2,9 +2,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 $project-indent-right 0 $project-indent-left;
+  padding: 0 $project-indent-right 0 10px;
   border-bottom: 1px solid $base-el-border-color;
   min-height: 50px;
+  span.done {
+    text-decoration: line-through;
+  };
+  &:hover {
+    background-color: rgba(color(grey-200), 0.4);
+    .project-task-actions {
+      opacity: 1;
+    }
+  }
+}
+.project-task-edit {
+  border-bottom: 1px solid $base-el-border-color;
 }
 .project-task-edit-btn {
   padding: 10px $project-indent-right 5px $project-indent-left;
@@ -18,4 +30,14 @@
     border: none;
     box-shadow: none;
   }
+}
+.project-task-actions {
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.15s;
+  margin-left: 10px;
+  padding-right: $project-indent-right;
+}
+.glyphicon-arrow-up, .glyphicon-arrow-down {
+  font-size: 10px;
 }

@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <h3 class="modal-title in-black text-center">{{ $ctrl.headerText }}</h3>
+</div>
+
+
+<form name="deadlineForm" ng-submit="deadlineForm.$valid && $ctrl.ok()" novalidate>
+  <div class="modal-body pb-5">
+    <div class="ml-15">
+      <label><strong>Date</strong></label>
+      <input name="date" ng-model="$ctrl.deadline" type="text" uib-datepicker-popup="dd/MM/yyyy"
+        show-button-bar="false"
+        popup-placement="right-top" is-open="$ctrl.popupDate.opened" datepicker-options="$ctrl.dateOptions"
+        ng-click="$ctrl.openDate()" class="date-input form-control text-center" show-button-bar="false" />
+    </div>
+    <br>
+
+    <div class="ml-15">
+      <label><strong>Time</strong></label>
+      <div uib-timepicker ng-model="$ctrl.deadline"
+           show-meridian="false" minute-step="30"></div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" ng-disabled="!deadlineForm.$valid" class="btn btn-primary datetime">
+      Save
+    </button>
+    <button type="button" class="btn btn-default datetime" ng-click="$ctrl.cancel()">
+      Cancel
+    </button>
+  </div>
+</form>
